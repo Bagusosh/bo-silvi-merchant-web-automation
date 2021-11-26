@@ -1,4 +1,3 @@
-import time
 import random
 import platform
 import unittest
@@ -17,12 +16,15 @@ from faker import Faker
 class LoginTests(unittest.TestCase):
 
     def setUp(self) -> None:
-        fake = Faker('id-ID')
-
         warnings.filterwarnings("ignore", category=DeprecationWarning)
-        self.driver = webdriver.Safari()
+        if platform.system() == "Darwin":
+            self.driver = webdriver.Safari()
+        else:
+            self.driver = webdriver.Chrome("chromedriver.exe")
 
         # Data
+        fake = Faker('id-ID')
+
         self.login_url = "https://silvi-staging.netlify.app"
         self.valid_email = 'samsantechrestoran@mailnesia.com'
         self.valid_password = '123456'
