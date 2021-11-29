@@ -111,7 +111,8 @@ class SalesSummaryTests(unittest.TestCase):
 
             try:
                 _ = WebDriverWait(driver, 10).until(
-                    EC.element_to_be_clickable((By.XPATH, self.this_week_button_xpath))
+                    EC.presence_of_element_located((By.ID, 'startDate')),
+                    EC.presence_of_element_located((By.ID, 'endDate'))
                 )
             except TimeoutException:
                 logger.error("Check Summary Test Case Resulted Error")
@@ -141,7 +142,8 @@ class SalesSummaryTests(unittest.TestCase):
 
             try:
                 _ = WebDriverWait(driver, 10).until(
-                    EC.element_to_be_clickable((By.XPATH, self.last_week_button_xpath))
+                    EC.presence_of_element_located((By.ID, 'startDate')),
+                    EC.presence_of_element_located((By.ID, 'endDate'))
                 )
             except TimeoutException:
                 logger.error("Check Summary Test Case Resulted Error")
@@ -171,7 +173,8 @@ class SalesSummaryTests(unittest.TestCase):
 
             try:
                 _ = WebDriverWait(driver, 10).until(
-                    EC.element_to_be_clickable((By.XPATH, self.this_month_button_xpath))
+                    EC.presence_of_element_located((By.ID, 'startDate')),
+                    EC.presence_of_element_located((By.ID, 'endDate'))
                 )
             except TimeoutException:
                 logger.error("Check Summary Test Case Resulted Error")
@@ -201,7 +204,8 @@ class SalesSummaryTests(unittest.TestCase):
 
             try:
                 _ = WebDriverWait(driver, 10).until(
-                    EC.element_to_be_clickable((By.XPATH, self.last_month_button_xpath))
+                    EC.presence_of_element_located((By.ID, 'startDate')),
+                    EC.presence_of_element_located((By.ID, 'endDate'))
                 )
             except TimeoutException:
                 logger.error("Check Summary Test Case Resulted Error")
@@ -231,7 +235,8 @@ class SalesSummaryTests(unittest.TestCase):
 
             try:
                 _ = WebDriverWait(driver, 10).until(
-                    EC.element_to_be_clickable((By.XPATH, self.this_year_button_xpath))
+                    EC.presence_of_element_located((By.ID, 'startDate')),
+                    EC.presence_of_element_located((By.ID, 'endDate'))
                 )
             except TimeoutException:
                 logger.error("Check Summary Test Case Resulted Error")
@@ -261,7 +266,8 @@ class SalesSummaryTests(unittest.TestCase):
 
             try:
                 _ = WebDriverWait(driver, 10).until(
-                    EC.element_to_be_clickable((By.XPATH, self.last_year_button_xpath))
+                    EC.presence_of_element_located((By.ID, 'startDate')),
+                    EC.presence_of_element_located((By.ID, 'endDate'))
                 )
             except TimeoutException:
                 logger.error("Check Summary Test Case Resulted Error")
@@ -273,7 +279,38 @@ class SalesSummaryTests(unittest.TestCase):
 
             assert 'Sales' in driver.page_source
             assert 'Total Sales' in driver.page_source
-            logger.success("Check Summary This Year Test Case has been Tested")
+            logger.success("Check Summary Last Year Test Case has been Tested")
+
+    def test_check_summary_with_specific_date(self):
+        with self.driver as driver:
+            driver.find_element(By.XPATH, self.sales_page).click()
+
+            try:
+                _ = WebDriverWait(driver, 10).until(
+                    EC.text_to_be_present_in_element((By.TAG_NAME, "h3"), "Sales")
+                )
+            except TimeoutException:
+                logger.error("Check Summary Test Case Resulted Error")
+                return
+
+            driver.find_element(By.XPATH, self.calendar_button_xpath).click()
+
+            try:
+                _ = WebDriverWait(driver, 10).until(
+                    EC.presence_of_element_located((By.ID, 'startDate')),
+                    EC.presence_of_element_located((By.ID, 'endDate'))
+                )
+            except TimeoutException:
+                logger.error("Check Summary Test Case Resulted Error")
+                return
+
+            driver.find_element(By.ID, 'startDate').send_keys(20112021)
+            driver.find_element(By.ID, 'endDate').send_keys(20112021)
+            time.sleep(5)
+
+            assert 'Sales' in driver.page_source
+            assert 'Total Sales' in driver.page_source
+            logger.success("Check Summary with Specific Date Test Case has been Tested")
 
     def tearDown(self) -> None:
         pass
