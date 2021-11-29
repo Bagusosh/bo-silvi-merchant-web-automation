@@ -4,6 +4,7 @@ import platform
 import unittest
 import warnings
 from loguru import logger
+from dotenv import load_dotenv
 
 from selenium import webdriver
 from selenium.webdriver.support import expected_conditions as EC
@@ -17,11 +18,12 @@ from faker import Faker
 class LoginTests(unittest.TestCase):
 
     def setUp(self) -> None:
+        load_dotenv()
         warnings.filterwarnings("ignore", category=DeprecationWarning)
         if platform.system() == "Darwin":
             self.driver = webdriver.Safari()
         else:
-            self.driver = webdriver.Chrome(os.environ.get("CHROME_DRIVER", "chromedriver.exe"))
+            self.driver = webdriver.Chrome(executable_path=os.environ.get("CHROME_DRIVER"))
 
         # Data
         fake = Faker('id-ID')
