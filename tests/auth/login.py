@@ -1,3 +1,4 @@
+import os
 import random
 import platform
 import unittest
@@ -20,7 +21,7 @@ class LoginTests(unittest.TestCase):
         if platform.system() == "Darwin":
             self.driver = webdriver.Safari()
         else:
-            self.driver = webdriver.Chrome("chromedriver.exe")
+            self.driver = webdriver.Chrome(os.environ.get("CHROME_DRIVER", "chromedriver.exe"))
 
         # Data
         fake = Faker('id-ID')
