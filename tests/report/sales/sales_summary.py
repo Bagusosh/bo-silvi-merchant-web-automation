@@ -25,8 +25,10 @@ class SalesSummaryTests(unittest.TestCase):
         warnings.filterwarnings("ignore", category=DeprecationWarning)
 
         self.driver = LoginDriver().driver
-        #data
+
+        # data
         self.valid_page_name = 'Sales'
+        self.valid_merchant_name = 'Samsan Tech Restoran!!'
 
         # xPaths
         self.sales_page = '//*[@id="root"]/div[2]/div[2]/div[4]/div[1]/div[2]/a'
@@ -48,25 +50,41 @@ class SalesSummaryTests(unittest.TestCase):
 
     def test_check_summary_today(self):
         with self.driver as driver:
+
+            try:
+                _ = WebDriverWait(driver, 10).until(
+                    EC.text_to_be_present_in_element((By.TAG_NAME, "h4"), self.valid_merchant_name)
+                )
+            except TimeoutException:
+                logger.error("Check Summary Test Case resulted Error")
+                return
+
             driver.find_element(By.XPATH, self.sales_page).click()
 
             try:
                 _ = WebDriverWait(driver, 10).until(
                     EC.presence_of_element_located((By.XPATH, self.summary_chart_xpath))
                 )
-                page_loaded = True
+                page_exist = True
             except TimeoutException:
                 logger.error("Check Summary Test Case Resulted Error")
-                page_loaded = False
+                page_exist = False
                 return
 
-            assert page_loaded is True
-            assert 'Sales' in driver.page_source
-            assert 'Total Sales' in driver.page_source
+            assert page_exist is True
             logger.success("Check Summary Today Test Case has been Tested")
 
     def test_check_summary_yesterday(self):
         with self.driver as driver:
+
+            try:
+                _ = WebDriverWait(driver, 10).until(
+                    EC.text_to_be_present_in_element((By.TAG_NAME, "h4"), self.valid_merchant_name)
+                )
+            except TimeoutException:
+                logger.error("Check Summary Test Case resulted Error")
+                return
+
             driver.find_element(By.XPATH, self.sales_page).click()
 
             try:
@@ -91,12 +109,30 @@ class SalesSummaryTests(unittest.TestCase):
 
             driver.find_element(By.XPATH, self.yesterday_button_xpath).send_keys(Keys.ESCAPE)
 
-            assert 'Sales' in driver.page_source
-            assert 'Total Sales' in driver.page_source
+            try:
+                _ = WebDriverWait(driver, 10).until(
+                    EC.presence_of_element_located((By.XPATH, self.summary_chart_xpath))
+                )
+                page_exist = True
+            except TimeoutException:
+                logger.error("Check Summary Test Case Resulted Error")
+                page_exist = False
+                return
+
+            assert page_exist is True
             logger.success("Check Summary Yesterday  Test Case has been Tested")
 
     def test_check_summary_this_week(self):
         with self.driver as driver:
+
+            try:
+                _ = WebDriverWait(driver, 10).until(
+                    EC.text_to_be_present_in_element((By.TAG_NAME, "h4"), self.valid_merchant_name)
+                )
+            except TimeoutException:
+                logger.error("Check Summary Test Case resulted Error")
+                return
+
             driver.find_element(By.XPATH, self.sales_page).click()
 
             try:
@@ -122,12 +158,30 @@ class SalesSummaryTests(unittest.TestCase):
 
             driver.find_element(By.XPATH, self.this_week_button_xpath).send_keys(Keys.ESCAPE)
 
-            assert 'Sales' in driver.page_source
-            assert 'Total Sales' in driver.page_source
+            try:
+                _ = WebDriverWait(driver, 10).until(
+                    EC.presence_of_element_located((By.XPATH, self.summary_chart_xpath))
+                )
+                page_exist = True
+            except TimeoutException:
+                logger.error("Check Summary Test Case Resulted Error")
+                page_exist = False
+                return
+
+            assert page_exist is True
             logger.success("Check Summary This Week Test Case has been Tested")
 
     def test_check_summary_last_week(self):
         with self.driver as driver:
+
+            try:
+                _ = WebDriverWait(driver, 10).until(
+                    EC.text_to_be_present_in_element((By.TAG_NAME, "h4"), self.valid_merchant_name)
+                )
+            except TimeoutException:
+                logger.error("Check Summary Test Case resulted Error")
+                return
+
             driver.find_element(By.XPATH, self.sales_page).click()
 
             try:
@@ -153,12 +207,30 @@ class SalesSummaryTests(unittest.TestCase):
 
             driver.find_element(By.XPATH, self.last_week_button_xpath).send_keys(Keys.ESCAPE)
 
-            assert 'Sales' in driver.page_source
-            assert 'Total Sales' in driver.page_source
+            try:
+                _ = WebDriverWait(driver, 10).until(
+                    EC.presence_of_element_located((By.XPATH, self.summary_chart_xpath))
+                )
+                page_exist = True
+            except TimeoutException:
+                logger.error("Check Summary Test Case Resulted Error")
+                page_exist = False
+                return
+
+            assert page_exist is True
             logger.success("Check Summary Last Week Test Case has been Tested")
 
     def test_check_summary_this_month(self):
         with self.driver as driver:
+
+            try:
+                _ = WebDriverWait(driver, 10).until(
+                    EC.text_to_be_present_in_element((By.TAG_NAME, "h4"), self.valid_merchant_name)
+                )
+            except TimeoutException:
+                logger.error("Check Summary Test Case resulted Error")
+                return
+
             driver.find_element(By.XPATH, self.sales_page).click()
 
             try:
@@ -184,12 +256,30 @@ class SalesSummaryTests(unittest.TestCase):
 
             driver.find_element(By.XPATH, self.this_month_button_xpath).send_keys(Keys.ESCAPE)
 
-            assert 'Sales' in driver.page_source
-            assert 'Total Sales' in driver.page_source
+            try:
+                _ = WebDriverWait(driver, 10).until(
+                    EC.presence_of_element_located((By.XPATH, self.summary_chart_xpath))
+                )
+                page_exist = True
+            except TimeoutException:
+                logger.error("Check Summary Test Case Resulted Error")
+                page_exist = False
+                return
+
+            assert page_exist is True
             logger.success("Check Summary This Month Test Case has been Tested")
 
     def test_check_summary_last_month(self):
         with self.driver as driver:
+
+            try:
+                _ = WebDriverWait(driver, 10).until(
+                    EC.text_to_be_present_in_element((By.TAG_NAME, "h4"), self.valid_merchant_name)
+                )
+            except TimeoutException:
+                logger.error("Check Summary Test Case resulted Error")
+                return
+
             driver.find_element(By.XPATH, self.sales_page).click()
 
             try:
@@ -215,12 +305,30 @@ class SalesSummaryTests(unittest.TestCase):
 
             driver.find_element(By.XPATH, self.last_month_button_xpath).send_keys(Keys.ESCAPE)
 
-            assert 'Sales' in driver.page_source
-            assert 'Total Sales' in driver.page_source
+            try:
+                _ = WebDriverWait(driver, 10).until(
+                    EC.presence_of_element_located((By.XPATH, self.summary_chart_xpath))
+                )
+                page_exist = True
+            except TimeoutException:
+                logger.error("Check Summary Test Case Resulted Error")
+                page_exist = False
+                return
+
+            assert page_exist is True
             logger.success("Check Summary Last Month Test Case has been Tested")
 
     def test_check_summary_this_year(self):
         with self.driver as driver:
+
+            try:
+                _ = WebDriverWait(driver, 10).until(
+                    EC.text_to_be_present_in_element((By.TAG_NAME, "h4"), self.valid_merchant_name)
+                )
+            except TimeoutException:
+                logger.error("Check Summary Test Case resulted Error")
+                return
+
             driver.find_element(By.XPATH, self.sales_page).click()
 
             try:
@@ -246,12 +354,30 @@ class SalesSummaryTests(unittest.TestCase):
 
             driver.find_element(By.XPATH, self.this_year_button_xpath).send_keys(Keys.ESCAPE)
 
-            assert 'Sales' in driver.page_source
-            assert 'Total Sales' in driver.page_source
+            try:
+                _ = WebDriverWait(driver, 10).until(
+                    EC.presence_of_element_located((By.XPATH, self.summary_chart_xpath))
+                )
+                page_exist = True
+            except TimeoutException:
+                logger.error("Check Summary Test Case Resulted Error")
+                page_exist = False
+                return
+
+            assert page_exist is True
             logger.success("Check Summary This Year Test Case has been Tested")
 
     def test_check_summary_last_year(self):
         with self.driver as driver:
+
+            try:
+                _ = WebDriverWait(driver, 10).until(
+                    EC.text_to_be_present_in_element((By.TAG_NAME, "h4"), self.valid_merchant_name)
+                )
+            except TimeoutException:
+                logger.error("Check Summary Test Case resulted Error")
+                return
+
             driver.find_element(By.XPATH, self.sales_page).click()
 
             try:
@@ -277,12 +403,29 @@ class SalesSummaryTests(unittest.TestCase):
 
             driver.find_element(By.XPATH, self.last_year_button_xpath).send_keys(Keys.ESCAPE)
 
-            assert 'Sales' in driver.page_source
-            assert 'Total Sales' in driver.page_source
+            try:
+                _ = WebDriverWait(driver, 10).until(
+                    EC.presence_of_element_located((By.XPATH, self.summary_chart_xpath))
+                )
+                page_exist = True
+            except TimeoutException:
+                logger.error("Check Summary Test Case Resulted Error")
+                page_exist = False
+                return
+
+            assert page_exist is True
             logger.success("Check Summary Last Year Test Case has been Tested")
 
     def test_check_summary_with_specific_date(self):
         with self.driver as driver:
+            try:
+                _ = WebDriverWait(driver, 10).until(
+                    EC.text_to_be_present_in_element((By.TAG_NAME, "h4"), self.valid_merchant_name)
+                )
+            except TimeoutException:
+                logger.error("Check Summary Test Case resulted Error")
+                return
+
             driver.find_element(By.XPATH, self.sales_page).click()
 
             try:
@@ -306,10 +449,18 @@ class SalesSummaryTests(unittest.TestCase):
 
             driver.find_element(By.ID, 'startDate').send_keys(20112021)
             driver.find_element(By.ID, 'endDate').send_keys(20112021)
-            time.sleep(5)
 
-            assert 'Sales' in driver.page_source
-            assert 'Total Sales' in driver.page_source
+            try:
+                _ = WebDriverWait(driver, 10).until(
+                    EC.presence_of_element_located((By.XPATH, self.summary_chart_xpath))
+                )
+                page_exist = True
+            except TimeoutException:
+                logger.error("Check Summary Test Case Resulted Error")
+                page_exist = False
+                return
+
+            assert page_exist is True
             logger.success("Check Summary with Specific Date Test Case has been Tested")
 
     def tearDown(self) -> None:
