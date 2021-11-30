@@ -161,7 +161,7 @@ class PaymentMethodTests(unittest.TestCase):
                 return
 
             assert page_exist is True
-            logger.success("Check Payment Method Today Test Case has been Tested")
+            logger.success("Check Payment Method Yesterday Test Case has been Tested")
 
     def test_check_payment_method_this_week(self):
         with self.driver as driver:
