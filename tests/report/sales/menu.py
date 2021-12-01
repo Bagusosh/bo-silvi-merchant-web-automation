@@ -454,3 +454,6 @@ class SalesPerMenuTests(unittest.TestCase):
 
             assert page_exist is True
             logger.success("Check Report Menu Last Year Test Case has been Tested")
+
+    def tearDown(self) -> None:
+        pass
