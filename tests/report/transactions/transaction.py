@@ -26,9 +26,8 @@ class SalesReportTransactionTests(unittest.TestCase):
         self.driver = LoginDriver().driver
 
         # data
-        self.valid_page_name = 'Sales'
+        self.valid_page_name = 'Transaksi'
         self.valid_merchant_name = 'Samsan Tech Restoran!!'
-        self.title_menu_chart = 'Transaksi'
 
         # Xpath
         self.calendar_button_xpath = '/html/body/div[1]/div[2]/div[3]/div/div/div[2]/div/button[2]'
@@ -53,7 +52,7 @@ class SalesReportTransactionTests(unittest.TestCase):
 
             try:
                 _ = WebDriverWait(driver, 10).until(
-                    EC.text_to_be_present_in_element((By.TAG_NAME, "h3"), "Transaksi")
+                    EC.text_to_be_present_in_element((By.TAG_NAME, "h3"), self.valid_page_name)
                 )
             except TimeoutException:
                 logger.error("Check Report Transaction Test Case Resulted Error")
@@ -94,7 +93,7 @@ class SalesReportTransactionTests(unittest.TestCase):
 
             try:
                 _ = WebDriverWait(driver, 10).until(
-                    EC.text_to_be_present_in_element((By.TAG_NAME, "h3"), "Transaksi")
+                    EC.text_to_be_present_in_element((By.TAG_NAME, "h3"), self.valid_page_name)
                 )
             except TimeoutException:
                 logger.error("Check Report Transaction Test Case Resulted Error")
@@ -135,7 +134,7 @@ class SalesReportTransactionTests(unittest.TestCase):
 
             try:
                 _ = WebDriverWait(driver, 10).until(
-                    EC.text_to_be_present_in_element((By.TAG_NAME, "h3"), "Transaksi")
+                    EC.text_to_be_present_in_element((By.TAG_NAME, "h3"), self.valid_page_name)
                 )
             except TimeoutException:
                 logger.error("Check Report Transaction Test Case Resulted Error")
@@ -176,7 +175,7 @@ class SalesReportTransactionTests(unittest.TestCase):
 
             try:
                 _ = WebDriverWait(driver, 10).until(
-                    EC.text_to_be_present_in_element((By.TAG_NAME, "h3"), "Transaksi")
+                    EC.text_to_be_present_in_element((By.TAG_NAME, "h3"), self.valid_page_name)
                 )
             except TimeoutException:
                 logger.error("Check Report Transaction Test Case Resulted Error")
@@ -217,7 +216,7 @@ class SalesReportTransactionTests(unittest.TestCase):
 
             try:
                 _ = WebDriverWait(driver, 10).until(
-                    EC.text_to_be_present_in_element((By.TAG_NAME, "h3"), "Transaksi")
+                    EC.text_to_be_present_in_element((By.TAG_NAME, "h3"), self.valid_page_name)
                 )
             except TimeoutException:
                 logger.error("Check Report Transaction Test Case Resulted Error")
@@ -258,7 +257,7 @@ class SalesReportTransactionTests(unittest.TestCase):
 
             try:
                 _ = WebDriverWait(driver, 10).until(
-                    EC.text_to_be_present_in_element((By.TAG_NAME, "h3"), "Transaksi")
+                    EC.text_to_be_present_in_element((By.TAG_NAME, "h3"), self.valid_page_name)
                 )
             except TimeoutException:
                 logger.error("Check Report Transaction Test Case Resulted Error")
@@ -299,7 +298,7 @@ class SalesReportTransactionTests(unittest.TestCase):
 
             try:
                 _ = WebDriverWait(driver, 10).until(
-                    EC.text_to_be_present_in_element((By.TAG_NAME, "h3"), "Transaksi")
+                    EC.text_to_be_present_in_element((By.TAG_NAME, "h3"), self.valid_page_name)
                 )
             except TimeoutException:
                 logger.error("Check Report Transaction Test Case Resulted Error")
@@ -340,7 +339,7 @@ class SalesReportTransactionTests(unittest.TestCase):
 
             try:
                 _ = WebDriverWait(driver, 10).until(
-                    EC.text_to_be_present_in_element((By.TAG_NAME, "h3"), "Transaksi")
+                    EC.text_to_be_present_in_element((By.TAG_NAME, "h3"), self.valid_page_name)
                 )
             except TimeoutException:
                 logger.error("Check Report Transaction Test Case Resulted Error")
