@@ -54,7 +54,7 @@ class SalesPerDiscountTests(unittest.TestCase):
 
             try:
                 _ = WebDriverWait(driver, 10).until(
-                    EC.text_to_be_present_in_element((By.TAG_NAME, "h3"), "Sales")
+                    EC.text_to_be_present_in_element((By.TAG_NAME, "h3"), self.valid_page_name)
                 )
             except TimeoutException:
                 logger.error("Check Report Discount Test Case Resulted Error")
@@ -105,7 +105,7 @@ class SalesPerDiscountTests(unittest.TestCase):
 
             try:
                 _ = WebDriverWait(driver, 10).until(
-                    EC.text_to_be_present_in_element((By.TAG_NAME, "h3"), "Sales")
+                    EC.text_to_be_present_in_element((By.TAG_NAME, "h3"), self.valid_page_name)
                 )
             except TimeoutException:
                 logger.error("Check Report Discount Test Case Resulted Error")
@@ -156,7 +156,7 @@ class SalesPerDiscountTests(unittest.TestCase):
 
             try:
                 _ = WebDriverWait(driver, 10).until(
-                    EC.text_to_be_present_in_element((By.TAG_NAME, "h3"), "Sales")
+                    EC.text_to_be_present_in_element((By.TAG_NAME, "h3"), self.valid_page_name)
                 )
             except TimeoutException:
                 logger.error("Check Report Discount Test Case Resulted Error")
@@ -207,7 +207,7 @@ class SalesPerDiscountTests(unittest.TestCase):
 
             try:
                 _ = WebDriverWait(driver, 10).until(
-                    EC.text_to_be_present_in_element((By.TAG_NAME, "h3"), "Sales")
+                    EC.text_to_be_present_in_element((By.TAG_NAME, "h3"), self.valid_page_name)
                 )
             except TimeoutException:
                 logger.error("Check Report Discount Test Case Resulted Error")
@@ -258,7 +258,7 @@ class SalesPerDiscountTests(unittest.TestCase):
 
             try:
                 _ = WebDriverWait(driver, 10).until(
-                    EC.text_to_be_present_in_element((By.TAG_NAME, "h3"), "Sales")
+                    EC.text_to_be_present_in_element((By.TAG_NAME, "h3"), self.valid_page_name)
                 )
             except TimeoutException:
                 logger.error("Check Report Discount Test Case Resulted Error")
@@ -309,7 +309,7 @@ class SalesPerDiscountTests(unittest.TestCase):
 
             try:
                 _ = WebDriverWait(driver, 10).until(
-                    EC.text_to_be_present_in_element((By.TAG_NAME, "h3"), "Sales")
+                    EC.text_to_be_present_in_element((By.TAG_NAME, "h3"), self.valid_page_name)
                 )
             except TimeoutException:
                 logger.error("Check Report Discount Test Case Resulted Error")
@@ -360,7 +360,7 @@ class SalesPerDiscountTests(unittest.TestCase):
 
             try:
                 _ = WebDriverWait(driver, 10).until(
-                    EC.text_to_be_present_in_element((By.TAG_NAME, "h3"), "Sales")
+                    EC.text_to_be_present_in_element((By.TAG_NAME, "h3"), self.valid_page_name)
                 )
             except TimeoutException:
                 logger.error("Check Report Discount Test Case Resulted Error")
@@ -411,7 +411,7 @@ class SalesPerDiscountTests(unittest.TestCase):
 
             try:
                 _ = WebDriverWait(driver, 10).until(
-                    EC.text_to_be_present_in_element((By.TAG_NAME, "h3"), "Sales")
+                    EC.text_to_be_present_in_element((By.TAG_NAME, "h3"), self.valid_page_name)
                 )
             except TimeoutException:
                 logger.error("Check Report Discount Test Case Resulted Error")
