@@ -28,7 +28,7 @@ class LoginTests(unittest.TestCase):
         # Data
         fake = Faker('id-ID')
 
-        self.login_url = "https://silvi-staging.netlify.app"
+        self.login_url = "https://silvi-merchant-develop.netlify.app/"
         self.valid_email = 'samsantechrestoran@mailnesia.com'
         self.valid_password = '123456'
         self.valid_merchant_name = 'Samsan Tech Restoran!!'
