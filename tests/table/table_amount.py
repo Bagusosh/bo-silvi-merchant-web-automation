@@ -27,7 +27,6 @@ class TableAmountSetupTests(unittest.TestCase):
 
         # data
         self.valid_page_name = 'Atur Meja'
-        self.valid_merchant_name = 'Samsan Tech Restoran!!'
         self.modal_verification_title = 'Apakah jumlah meja yang kamu request sudah sesuai dengan kebutuhanmu?'
         self.request_amount = 5
 
