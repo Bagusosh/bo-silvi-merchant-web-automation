@@ -46,7 +46,7 @@ class SalesReportGrossProfitTests(unittest.TestCase):
         # etc
         self.context = {}
 
-    def test_check_report_tax_today(self):
+    def test_check_report_gross_profit_today(self):
         with self.driver as driver:
 
             driver.find_element(By.XPATH, self.sales_page_xpath).click()
@@ -108,7 +108,7 @@ class SalesReportGrossProfitTests(unittest.TestCase):
             assert page_exist is True
             logger.success("Check Gross Profit Today Test Case has been Tested")
 
-    def test_check_report_tax_yesterday(self):
+    def test_check_report_gross_profit_yesterday(self):
         with self.driver as driver:
 
             driver.find_element(By.XPATH, self.sales_page_xpath).click()
@@ -170,7 +170,7 @@ class SalesReportGrossProfitTests(unittest.TestCase):
             assert page_exist is True
             logger.success("Check Gross Profit Yesterday Test Case has been Tested")
 
-    def test_check_report_tax_this_week(self):
+    def test_check_report_gross_profit_this_week(self):
         with self.driver as driver:
 
             driver.find_element(By.XPATH, self.sales_page_xpath).click()
@@ -232,7 +232,7 @@ class SalesReportGrossProfitTests(unittest.TestCase):
             assert page_exist is True
             logger.success("Check Gross Profit This Week Test Case has been Tested")
 
-    def test_check_report_tax_last_week(self):
+    def test_check_report_gross_profit_last_week(self):
         with self.driver as driver:
 
             driver.find_element(By.XPATH, self.sales_page_xpath).click()
@@ -294,7 +294,7 @@ class SalesReportGrossProfitTests(unittest.TestCase):
             assert page_exist is True
             logger.success("Check Gross Profit Last Week Test Case has been Tested")
 
-    def test_check_report_tax_this_month(self):
+    def test_check_report_gross_profit_this_month(self):
         with self.driver as driver:
 
             driver.find_element(By.XPATH, self.sales_page_xpath).click()
@@ -356,7 +356,7 @@ class SalesReportGrossProfitTests(unittest.TestCase):
             assert page_exist is True
             logger.success("Check Gross Profit This Month Test Case has been Tested")
 
-    def test_check_report_tax_last_month(self):
+    def test_check_report_gross_profit_last_month(self):
         with self.driver as driver:
 
             driver.find_element(By.XPATH, self.sales_page_xpath).click()
@@ -418,7 +418,7 @@ class SalesReportGrossProfitTests(unittest.TestCase):
             assert page_exist is True
             logger.success("Check Gross Profit Last Month Test Case has been Tested")
 
-    def test_check_report_tax_this_year(self):
+    def test_check_report_gross_profit_this_year(self):
         with self.driver as driver:
 
             driver.find_element(By.XPATH, self.sales_page_xpath).click()
@@ -480,7 +480,7 @@ class SalesReportGrossProfitTests(unittest.TestCase):
             assert page_exist is True
             logger.success("Check Gross Profit This Year Test Case has been Tested")
 
-    def test_check_report_tax_last_year(self):
+    def test_check_report_gross_profit_last_year(self):
         with self.driver as driver:
 
             driver.find_element(By.XPATH, self.sales_page_xpath).click()
