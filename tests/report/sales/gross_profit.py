@@ -28,7 +28,6 @@ class SalesReportGrossProfitTests(unittest.TestCase):
         # data
         self.valid_page_name = 'Sales'
 
-
         # Xpath
         self.gross_profit_chart_xpath = '/html/body/div[1]/div[2]/div[3]/div/div/div[2]/div[3]/div/div[2]'
         self.sales_page_xpath = '//*[@id="root"]/div[2]/div[2]/div[4]/div[1]/div[2]/a'
@@ -53,7 +52,7 @@ class SalesReportGrossProfitTests(unittest.TestCase):
 
             try:
                 _ = WebDriverWait(driver, 10).until(
-                    EC.text_to_be_present_in_element((By.TAG_NAME, "h3"), "Sales")
+                    EC.text_to_be_present_in_element((By.TAG_NAME, "h3"), self.valid_page_name)
                 )
             except TimeoutException:
                 logger.error("Check Gross Profit Test Case Resulted Error")
@@ -115,7 +114,7 @@ class SalesReportGrossProfitTests(unittest.TestCase):
 
             try:
                 _ = WebDriverWait(driver, 10).until(
-                    EC.text_to_be_present_in_element((By.TAG_NAME, "h3"), "Sales")
+                    EC.text_to_be_present_in_element((By.TAG_NAME, "h3"), self.valid_page_name)
                 )
             except TimeoutException:
                 logger.error("Check Gross Profit Test Case Resulted Error")
@@ -177,7 +176,7 @@ class SalesReportGrossProfitTests(unittest.TestCase):
 
             try:
                 _ = WebDriverWait(driver, 10).until(
-                    EC.text_to_be_present_in_element((By.TAG_NAME, "h3"), "Sales")
+                    EC.text_to_be_present_in_element((By.TAG_NAME, "h3"), self.valid_page_name)
                 )
             except TimeoutException:
                 logger.error("Check Gross Profit Test Case Resulted Error")
@@ -239,7 +238,7 @@ class SalesReportGrossProfitTests(unittest.TestCase):
 
             try:
                 _ = WebDriverWait(driver, 10).until(
-                    EC.text_to_be_present_in_element((By.TAG_NAME, "h3"), "Sales")
+                    EC.text_to_be_present_in_element((By.TAG_NAME, "h3"), self.valid_page_name)
                 )
             except TimeoutException:
                 logger.error("Check Gross Profit Test Case Resulted Error")
@@ -301,7 +300,7 @@ class SalesReportGrossProfitTests(unittest.TestCase):
 
             try:
                 _ = WebDriverWait(driver, 10).until(
-                    EC.text_to_be_present_in_element((By.TAG_NAME, "h3"), "Sales")
+                    EC.text_to_be_present_in_element((By.TAG_NAME, "h3"), self.valid_page_name)
                 )
             except TimeoutException:
                 logger.error("Check Gross Profit Test Case Resulted Error")
@@ -363,7 +362,7 @@ class SalesReportGrossProfitTests(unittest.TestCase):
 
             try:
                 _ = WebDriverWait(driver, 10).until(
-                    EC.text_to_be_present_in_element((By.TAG_NAME, "h3"), "Sales")
+                    EC.text_to_be_present_in_element((By.TAG_NAME, "h3"), self.valid_page_name)
                 )
             except TimeoutException:
                 logger.error("Check Gross Profit Test Case Resulted Error")
@@ -425,7 +424,7 @@ class SalesReportGrossProfitTests(unittest.TestCase):
 
             try:
                 _ = WebDriverWait(driver, 10).until(
-                    EC.text_to_be_present_in_element((By.TAG_NAME, "h3"), "Sales")
+                    EC.text_to_be_present_in_element((By.TAG_NAME, "h3"), self.valid_page_name)
                 )
             except TimeoutException:
                 logger.error("Check Gross Profit Test Case Resulted Error")
@@ -487,7 +486,7 @@ class SalesReportGrossProfitTests(unittest.TestCase):
 
             try:
                 _ = WebDriverWait(driver, 10).until(
-                    EC.text_to_be_present_in_element((By.TAG_NAME, "h3"), "Sales")
+                    EC.text_to_be_present_in_element((By.TAG_NAME, "h3"), self.valid_page_name)
                 )
             except TimeoutException:
                 logger.error("Check Gross Profit Test Case Resulted Error")
