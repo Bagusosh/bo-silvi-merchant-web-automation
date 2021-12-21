@@ -74,7 +74,7 @@ class PayInvoiceTests(unittest.TestCase):
                 logger.error("Pay Invoice Test Case Resulted Error")
 
             assert page_exist is True
-            logger.success("Check Pay Invoice Test Case Resulted Error")
+            logger.success("Check Pay Invoice Test Case has been Tested")
 
     def tearDown(self) -> None:
         pass
