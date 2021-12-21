@@ -333,3 +333,6 @@ class AccountSettingProfileTests(unittest.TestCase):
             time.sleep(5)
 
             logger.success("Set Operational Hour Test Case has been Tested")
+
+    def tearDown(self) -> None:
+        pass
