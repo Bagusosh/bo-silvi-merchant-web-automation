@@ -282,7 +282,7 @@ class EmployeeSettingTests(unittest.TestCase):
 
             driver.find_element(By.ID, 'name').send_keys('Selenium')
             driver.find_element(By.ID, 'email').send_keys('seleniumflick@mailnesia.com')
-            driver.find_element(By.ID, 'phoneNumber').send_keys('abcdefg')
+            driver.find_element(By.ID, 'phoneNumber').send_keys('abcds')
 
             try:
                 _ = WebDriverWait(driver, 10).until(
@@ -297,6 +297,7 @@ class EmployeeSettingTests(unittest.TestCase):
                 if row_element.text == self.employee_position:
                     row_element.click()
 
+            time.sleep(5)
             try:
                 _ = WebDriverWait(driver, 10).until(
                     EC.element_to_be_clickable((By.XPATH, self.button_save_recruit_xpath))
@@ -339,7 +340,7 @@ class EmployeeSettingTests(unittest.TestCase):
 
             driver.find_element(By.ID, 'name').send_keys('Selenium')
             driver.find_element(By.ID, 'email').send_keys('seleniumflick@mailnesia.com')
-            driver.find_element(By.ID, 'phoneNumber').send_keys('abcdefg')
+            driver.find_element(By.ID, 'phoneNumber').send_keys(87741331517)
 
             try:
                 _ = WebDriverWait(driver, 10).until(
@@ -383,7 +384,7 @@ class EmployeeSettingTests(unittest.TestCase):
 
             driver.find_element(By.ID, 'name').send_keys('Selenium')
             driver.find_element(By.ID, 'email').send_keys('seleniumflick')
-            driver.find_element(By.ID, 'phoneNumber').send_keys('abcdefg')
+            driver.find_element(By.ID, 'phoneNumber').send_keys(87741331517)
 
             try:
                 _ = WebDriverWait(driver, 10).until(
