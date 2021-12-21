@@ -53,7 +53,7 @@ class PayInvoiceTests(unittest.TestCase):
                     EC.text_to_be_present_in_element((By.TAG_NAME, "h3"), self.valid_page_name)
                 )
             except TimeoutException:
-                logger.error("Change Account Setting Profile Test Case Resulted Error")
+                logger.error("Pay Invoice Test Case Resulted Error")
                 return
 
             try:
@@ -62,7 +62,7 @@ class PayInvoiceTests(unittest.TestCase):
                 )
                 page_exist = True
             except TimeoutException:
-                logger.error("Change Account Setting Profile Test Case Resulted Error")
+                logger.error("Pay Invoice Test Case Resulted Error")
                 page_exist = False
                 return
 
