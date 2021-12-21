@@ -18,7 +18,7 @@ from faker import Faker
 from driver.login import LoginDriver
 
 
-class PayInvoiceProfileTests(unittest.TestCase):
+class PayInvoiceTests(unittest.TestCase):
     def setUp(self) -> None:
         load_dotenv()
         warnings.filterwarnings("ignore", category=DeprecationWarning)
