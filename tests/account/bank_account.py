@@ -28,6 +28,9 @@ class BankAccountTests(unittest.TestCase):
         # data
         self.valid_page_name = 'Rekening Bank'
         self.valid_bank_name = 'BNI (Bank Negara Indonesia) dan BNI Syariah'
+        self.valid_account_holder_name = 'Rangga Luthanza'
+        self.valid_pin = 123456
+        self.valid_account_bank_number = '0774689929'
 
         # Xpath
         self.bank_account_page_xpath = '//*[@id="root"]/div[2]/div[2]/div[14]/div[3]/div[2]'
@@ -97,8 +100,8 @@ class BankAccountTests(unittest.TestCase):
                     row_element.click()
                     break
 
-            driver.find_element(By.ID, 'accountNumber').send_keys('0', 774689929)
-            driver.find_element(By.ID, 'accountHolderName').send_keys('Rangga Luthanza')
+            driver.find_element(By.ID, 'accountNumber').send_keys(self.valid_account_bank_number)
+            driver.find_element(By.ID, 'accountHolderName').send_keys(self.valid_account_holder_name)
 
             try:
                 _ = WebDriverWait(driver, 10).until(
@@ -151,7 +154,7 @@ class BankAccountTests(unittest.TestCase):
                 modal_exist = False
                 return
 
-            driver.find_element(By.ID, 'pin').send_keys(123456)
+            driver.find_element(By.ID, 'pin').send_keys(self.valid_pin)
 
             try:
                 _ = WebDriverWait(driver, 10).until(
@@ -193,8 +196,8 @@ class BankAccountTests(unittest.TestCase):
                     row_element.click()
                     break
 
-            driver.find_element(By.ID, 'accountNumber').send_keys('0', 774689929)
-            driver.find_element(By.ID, 'accountHolderName').send_keys('Rangga Luthanza')
+            driver.find_element(By.ID, 'accountNumber').send_keys(self.valid_account_bank_number)
+            driver.find_element(By.ID, 'accountHolderName').send_keys(self.valid_account_holder_name)
 
             try:
                 _ = WebDriverWait(driver, 10).until(
@@ -245,7 +248,7 @@ class BankAccountTests(unittest.TestCase):
                 modal_exist = False
                 return
 
-            driver.find_element(By.ID, 'pin').send_keys(123456)
+            driver.find_element(By.ID, 'pin').send_keys(self.valid_pin)
 
             try:
                 _ = WebDriverWait(driver, 10).until(
@@ -296,7 +299,7 @@ class BankAccountTests(unittest.TestCase):
                 modal_exist = False
                 return
 
-            driver.find_element(By.ID, 'pin').send_keys(123456)
+            driver.find_element(By.ID, 'pin').send_keys(self.valid_pin)
 
             try:
                 _ = WebDriverWait(driver, 10).until(
