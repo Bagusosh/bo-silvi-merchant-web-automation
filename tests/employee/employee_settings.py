@@ -30,6 +30,9 @@ class EmployeeSettingTests(unittest.TestCase):
 
         self.valid_page_name = 'Karyawan'
         self.valid_merchant_name = 'Samsan Tech Restoran!!'
+        self.valid_recruit_employee_name = 'Selenium'
+        self.valid_recruit_employee_email = 'seleniumflick@mailnesia.com'
+        self.valid_recruit_employee_number = 87741331517
         self.employee_name = 'Agus Harry'
         self.employee_position = 'Finance'
 
@@ -186,9 +189,9 @@ class EmployeeSettingTests(unittest.TestCase):
                 logger.error("Recruit Employee Position Test Case Resulted Error")
                 return
 
-            driver.find_element(By.ID, 'name').send_keys('Selenium')
-            driver.find_element(By.ID, 'email').send_keys('seleniumflick@mailnesia.com')
-            driver.find_element(By.ID, 'phoneNumber').send_keys(87741331517)
+            driver.find_element(By.ID, 'name').send_keys(self.valid_recruit_employee_name)
+            driver.find_element(By.ID, 'email').send_keys(self.valid_recruit_employee_email)
+            driver.find_element(By.ID, 'phoneNumber').send_keys(self.valid_recruit_employee_number)
 
             try:
                 _ = WebDriverWait(driver, 10).until(
@@ -283,8 +286,8 @@ class EmployeeSettingTests(unittest.TestCase):
                 logger.error("Recruit Employee Position Test Case Resulted Error")
                 return
 
-            driver.find_element(By.ID, 'name').send_keys('Selenium')
-            driver.find_element(By.ID, 'email').send_keys('seleniumflick@mailnesia.com')
+            driver.find_element(By.ID, 'name').send_keys(self.valid_recruit_employee_name)
+            driver.find_element(By.ID, 'email').send_keys(self.valid_recruit_employee_email)
             driver.find_element(By.ID, 'phoneNumber').send_keys(self.invalid_phone_number)
 
             try:
@@ -384,9 +387,9 @@ class EmployeeSettingTests(unittest.TestCase):
                 logger.error("Recruit Employee Position Test Case Resulted Error")
                 return
 
-            driver.find_element(By.ID, 'name').send_keys('Selenium')
+            driver.find_element(By.ID, 'name').send_keys(self.valid_recruit_employee_name)
             driver.find_element(By.ID, 'email').send_keys(self.invalid_email)
-            driver.find_element(By.ID, 'phoneNumber').send_keys(87741331517)
+            driver.find_element(By.ID, 'phoneNumber').send_keys(self.valid_recruit_employee_number)
 
             try:
                 _ = WebDriverWait(driver, 10).until(
