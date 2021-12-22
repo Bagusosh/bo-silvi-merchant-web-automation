@@ -26,10 +26,15 @@ class EmployeeSettingTests(unittest.TestCase):
         self.driver = LoginDriver().driver
 
         # data
+        fake = Faker('id-ID')
+
         self.valid_page_name = 'Karyawan'
         self.valid_merchant_name = 'Samsan Tech Restoran!!'
         self.employee_name = 'Agus Harry'
         self.employee_position = 'Finance'
+
+        self.invalid_phone_number = fake.language_name()
+        self.invalid_email = fake.name()
 
         # Xpath
         self.set_employee_page_xpath = '//*[@id="root"]/div[2]/div[2]/div[10]/div[2]/div[2]'
@@ -246,8 +251,6 @@ class EmployeeSettingTests(unittest.TestCase):
                 logger.error("Recruit Employee Position Test Case Resulted Error")
                 return
 
-            time.sleep(5)
-
             logger.success("Recruit Employee Position with Empty Data Test Case has been Tested")
 
     def test_recruit_employee_with_invalid_format_phone_number(self):
@@ -282,7 +285,7 @@ class EmployeeSettingTests(unittest.TestCase):
 
             driver.find_element(By.ID, 'name').send_keys('Selenium')
             driver.find_element(By.ID, 'email').send_keys('seleniumflick@mailnesia.com')
-            driver.find_element(By.ID, 'phoneNumber').send_keys('abcds')
+            driver.find_element(By.ID, 'phoneNumber').send_keys(self.invalid_phone_number)
 
             try:
                 _ = WebDriverWait(driver, 10).until(
@@ -297,7 +300,6 @@ class EmployeeSettingTests(unittest.TestCase):
                 if row_element.text == self.employee_position:
                     row_element.click()
 
-            time.sleep(5)
             try:
                 _ = WebDriverWait(driver, 10).until(
                     EC.element_to_be_clickable((By.XPATH, self.button_save_recruit_xpath))
@@ -383,7 +385,7 @@ class EmployeeSettingTests(unittest.TestCase):
                 return
 
             driver.find_element(By.ID, 'name').send_keys('Selenium')
-            driver.find_element(By.ID, 'email').send_keys('seleniumflick')
+            driver.find_element(By.ID, 'email').send_keys(self.invalid_email)
             driver.find_element(By.ID, 'phoneNumber').send_keys(87741331517)
 
             try:
