@@ -29,6 +29,10 @@ class AccountSettingProfileTests(unittest.TestCase):
         self.valid_page_name = 'Profil'
         self.photo_file_locate = 'C:\\Users\\bmass\\Downloads\\FlickApp PlayStore.png'
         self.day_operational_hour = 'Rabu'
+        self.valid_business_name = 'Samsan Tech Restoran!!'
+        self.valid_owner_name ='Muhammad Rangga Luthanza'
+        self.valid_email_business = 'samsantechrestoran@mailnesia.com'
+        self.valid_address_business = 'Bintaro, Pesanggrahan Jakarta Selatan DKI Jakarta, 12330'
 
         # Xpath
         self.profile_page_xpath = '//*[@id="root"]/div[2]/div[2]/div[14]/div[1]/div[2]/a'
@@ -131,19 +135,19 @@ class AccountSettingProfileTests(unittest.TestCase):
 
             driver.find_element(By.ID, "name").send_keys(Keys.CONTROL + "a")
             driver.find_element(By.ID, "name").send_keys(Keys.DELETE)
-            driver.find_element(By.ID, "name").send_keys("Samsan Tech Restoran!!")
+            driver.find_element(By.ID, "name").send_keys(self.valid_business_name)
 
             driver.find_element(By.ID, "ownerName").send_keys(Keys.CONTROL + "a")
             driver.find_element(By.ID, "ownerName").send_keys(Keys.DELETE)
-            driver.find_element(By.ID, "ownerName").send_keys("Muhammad Rangga Luthanza")
+            driver.find_element(By.ID, "ownerName").send_keys(self.valid_owner_name)
 
             driver.find_element(By.ID, "email").send_keys(Keys.CONTROL + "a")
             driver.find_element(By.ID, "email").send_keys(Keys.DELETE)
-            driver.find_element(By.ID, "email").send_keys("samsantechrestoran@mailnesia.com")
+            driver.find_element(By.ID, "email").send_keys(self.valid_email_business)
 
             driver.find_element(By.ID, "address").send_keys(Keys.CONTROL + "a")
             driver.find_element(By.ID, "address").send_keys(Keys.DELETE)
-            driver.find_element(By.ID, "address").send_keys("Bintaro, Pesanggrahan Jakarta Selatan DKI Jakarta, 12330")
+            driver.find_element(By.ID, "address").send_keys(self.valid_address_business)
 
             try:
                 _ = WebDriverWait(driver, 10).until(
