@@ -145,8 +145,13 @@ class AccountSettingProfileTests(unittest.TestCase):
             driver.find_element(By.ID, "address").send_keys(Keys.DELETE)
             driver.find_element(By.ID, "address").send_keys("Bintaro, Pesanggrahan Jakarta Selatan DKI Jakarta, 12330")
 
-            driver.find_element(By.XPATH, self.button_save_xpath).click()
-            time.sleep(5)
+            try:
+                _ = WebDriverWait(driver, 10).until(
+                    EC.element_to_be_clickable((By.XPATH, self.button_save_xpath))
+                ).click()
+            except TimeoutException:
+                logger.error("Change Account Setting Profile Test Case Resulted Error")
+                return
 
             assert page_exist is True
             logger.success("Change Business Information Test Case has been Tested")
@@ -329,8 +334,6 @@ class AccountSettingProfileTests(unittest.TestCase):
                 ).click()
             except TimeoutException:
                 logger.error("Set Operational Hour Test Case Resulted Error")
-
-            time.sleep(5)
 
             logger.success("Set Operational Hour Test Case has been Tested")
 
