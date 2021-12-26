@@ -73,6 +73,7 @@ class EmployeeJobPositionTests(unittest.TestCase):
         self.button_edit_job_position_xpath = '/html/body/div[{index}]/div[3]/ul/li[1]'
         self.button_accept_confirmation_xpath = '/html/body/div[9]/div[3]/div/div[3]/button[2]'
         self.button_drop_down_report_xpath = '//*[@id="root"]/div[2]/div[2]/div[3]'
+        self.button_access_back_office_xpath = '//*[@id="roleForm"]/div/div[2]/div/div[13]/label/span[2]/div'
 
         self.checkbox_row_job_employee_xpath = '//*[@id="roleForm"]/div/div[2]/div/div[1]/div'
         self.checkbox_row_job_role_xpath = '//*[@id="roleForm"]/div/div[2]/div/div[2]/div'
@@ -488,7 +489,78 @@ class EmployeeJobPositionTests(unittest.TestCase):
             except TimeoutException:
                 logger.error("Edit Employee Job Position Test Case Resulted Error")
 
+            assert chart_exist is True
+            assert table_row_exist is True
             logger.success("Edit Employee Job Position Test Case Test Case has been Tested")
+
+    def test_edit_job_position_enable_access_back_office(self):
+        with self.driver as driver:
+
+            driver.find_element(By.XPATH, self.button_drop_down_report_xpath).click()
+
+            driver.execute_script("window.scrollTo(0,document.body.scrollHeight)")
+
+            try:
+                _ = WebDriverWait(driver, 10).until(
+                    EC.element_to_be_clickable((By.XPATH, self.employee_position_page_xpath))
+                ).click()
+            except TimeoutException:
+                logger.error("Edit Enable Access Back Office Test Case Resulted Error")
+
+            try:
+                _ = WebDriverWait(driver, 10).until(
+                    EC.text_to_be_present_in_element((By.TAG_NAME, "h3"), self.valid_page_name)
+                )
+            except TimeoutException:
+                logger.error("Edit Enable Access Back Office Test Case Resulted Error")
+                return
+
+            try:
+                _ = WebDriverWait(driver, 10).until(
+                    EC.presence_of_element_located((By.XPATH, self.employee_job_position_chart_xpath))
+                )
+                chart_exist = True
+            except TimeoutException:
+                logger.error("Edit Enable Access Back Office Test Case Resulted Error")
+                chart_exist = False
+                return
+
+            table_row_elements = driver.find_elements(By.XPATH, self.table_row_xpath)
+            for index, row_element in enumerate(table_row_elements):
+                if row_element.find_element(By.TAG_NAME, 'strong').text == self.valid_new_position_name:
+                    row_element.find_element(By.TAG_NAME, 'button').click()
+                    break
+
+            driver.find_element(By.XPATH, self.button_edit_job_position_xpath.format(index=index + 3)).click()
+
+            try:
+                _ = WebDriverWait(driver, 10).until(
+                    EC.presence_of_element_located((By.XPATH, self.checkbox_row_job_employee_xpath))
+                )
+                table_row_exist = True
+            except TimeoutException:
+                logger.error("Edit Enable Access Back Office Test Case Resulted Error")
+                table_row_exist = False
+                return
+
+            try:
+                _ = WebDriverWait(driver, 10).until(
+                    EC.element_to_be_clickable((By.XPATH, self.button_access_back_office_xpath))
+                ).click()
+            except TimeoutException:
+                logger.error("Edit Enable Access Back Office Test Case Resulted Error")
+                return
+
+            try:
+                _ = WebDriverWait(driver, 10).until(
+                    EC.element_to_be_clickable((By.XPATH, self.button_save_position_xpath))
+                ).click()
+            except TimeoutException:
+                logger.error("Edit Enable Access Back Office Test Case Resulted Error")
+
+            assert chart_exist is True
+            assert table_row_exist is True
+            logger.success("Edit Enable Access Back Office Test Case Test Case has been Tested")
 
     def tearDown(self) -> None:
         pass
