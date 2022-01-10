@@ -29,6 +29,7 @@ class AccountSettingProfileTests(unittest.TestCase):
         self.valid_page_name = 'Profil'
         self.photo_file_locate = 'C:\\Users\\bmass\\Downloads\\FlickApp PlayStore.png'
         self.day_operational_hour = 'Rabu'
+
         self.valid_business_name = 'Samsan Tech Restoran!!'
         self.valid_owner_name ='Muhammad Rangga Luthanza'
         self.valid_email_business = 'samsantechrestoran@mailnesia.com'
@@ -38,18 +39,19 @@ class AccountSettingProfileTests(unittest.TestCase):
         self.profile_page_xpath = '//*[@id="root"]/div[2]/div[2]/div[14]/div[1]/div[2]/a'
         self.upload_photo_xpath = '//*[@id="restaurant-photo-input"]'
         self.banner_profile_xpath = '//*[@id="root"]/div[2]/div[3]/div/div[2]/div[2]/div[1]/div'
-        self.button_change_information_business = '/html/body/div[1]/div[2]/div[3]/div/div[2]/div[2]/div[2]/div[1]/div[1]/div[2]/button'
-        self.button_save_xpath = '/html/body/div[1]/div[2]/div[3]/div/div[1]/div[2]/div[1]/button[2]'
         self.table_operational_hours_xpath = '//*[@id="root"]/div[2]/div[3]/div/div[2]/div[2]/div[2]/div[4]/div[2]'
         self.table_row_xpath = '//*[@id="root"]/div[2]/div[3]/div/div[2]/div[2]/div[2]/div[4]/div[2]/div'
         self.modal_operational_xpath = '//*[@id="root"]/div[2]/div[3]/div/div[2]/div[2]/div[2]/div[3]/div[2]'
+        self.time_row_xpath = '/html/body/div[3]/div[3]/div/div[1]/div/div[2]/div/div/span'
+        self.open_twenty_hour_xpath = '//*[@id="root"]/div[2]/div[3]/div/div[2]/div[2]/div[2]/div[3]/div[2]/div[2]/div/div[1]'
+        self.closed_xpath = '//*[@id="root"]/div[2]/div[3]/div/div[2]/div[2]/div[2]/div[3]/div[2]/div[2]/div/div[2]'
+
+        self.button_change_information_business = '/html/body/div[1]/div[2]/div[3]/div/div[2]/div[2]/div[2]/div[1]/div[1]/div[2]/button'
+        self.button_save_xpath = '/html/body/div[1]/div[2]/div[3]/div/div[1]/div[2]/div[1]/button[2]'
         self.button_open_twenty_hour_xpath = '//*[@id="root"]/div[2]/div[3]/div/div[2]/div[2]/div[2]/div[3]/div[2]/div[2]/div/div[1]/div/span'
         self.button_closed_xpath = '//*[@id="root"]/div[2]/div[3]/div/div[2]/div[2]/div[2]/div[3]/div[2]/div[2]/div/div[2]/div/span'
         self.button_set_time_xpath = '//*[@id="root"]/div[2]/div[3]/div/div[2]/div[2]/div[2]/div[3]/div[2]/div[2]/div/div[3]/div[1]/span'
         self.button_save_operational_hour_xpath = '//*[@id="root"]/div[2]/div[3]/div/div[2]/div[2]/div[2]/div[3]/div[2]/div[1]/button[2]'
-        self.time_row_xpath = '/html/body/div[3]/div[3]/div/div[1]/div/div[2]/div/div/span'
-        self.open_twenty_hour_xpath = '//*[@id="root"]/div[2]/div[3]/div/div[2]/div[2]/div[2]/div[3]/div[2]/div[2]/div/div[1]'
-        self.closed_xpath = '//*[@id="root"]/div[2]/div[3]/div/div[2]/div[2]/div[2]/div[3]/div[2]/div[2]/div/div[2]'
 
         # etc
         self.context = {}
