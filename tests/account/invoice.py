@@ -76,5 +76,10 @@ class PayInvoiceTests(unittest.TestCase):
             assert page_exist is True
             logger.success("Check Pay Invoice Test Case has been Tested")
 
+    @classmethod
+    def as_suite(cls, test_suite: unittest.TestSuite) -> unittest.TestSuite:
+        test_suite.addTest(cls('test_pay_invoice'))
+        return test_suite
+
     def tearDown(self) -> None:
         pass
