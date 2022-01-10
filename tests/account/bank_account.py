@@ -34,16 +34,17 @@ class BankAccountTests(unittest.TestCase):
 
         # Xpath
         self.bank_account_page_xpath = '//*[@id="root"]/div[2]/div[2]/div[14]/div[3]/div[2]'
-        self.button_delete_bank_account_xpath = '//*[@id="root"]/div[2]/div[3]/div/div/div[2]/div[2]/div/div[1]/button'
         self.modal_confirmation_delete_account_xpath = '/html/body/div[3]/div[3]/div'
+        self.field_bank_name_xpath = '//*[@id="bankCode"]'
+        self.list_of_bank_name_xpath = '//*[@id="menu-"]/div[3]/ul'
+        self.modal_adding_bank_account_xpath = '//*[@id="root"]/div[2]/div[3]/div/div/div[2]/div[1]/div[2]'
+        self.auto_debt_chart_xpath = '//*[@id="root"]/div[2]/div[3]/div/div/div[2]/div[3]/div/div[1]'
+
         self.button_delete_account_confirmation_xpath = '/html/body/div[3]/div[3]/div/div[3]/button[2]'
         self.button_cancel_account_confirmation_xpath = '/html/body/div[3]/div[3]/div/div[3]/button[1]'
         self.button_adding_bank_account_xpath = '//*[@id="root"]/div[2]/div[3]/div/div/div[2]/div[2]/button'
-        self.field_bank_name_xpath = '//*[@id="bankCode"]'
-        self.list_of_bank_name_xpath = '//*[@id="menu-"]/div[3]/ul'
         self.button_save_adding_bank_account_xpath = '//*[@id="root"]/div[2]/div[3]/div/div/div[2]/div[1]/div[2]/div[3]/button'
-        self.modal_adding_bank_account_xpath = '//*[@id="root"]/div[2]/div[3]/div/div/div[2]/div[1]/div[2]'
-        self.auto_debt_chart_xpath = '//*[@id="root"]/div[2]/div[3]/div/div/div[2]/div[3]/div/div[1]'
+        self.button_delete_bank_account_xpath = '//*[@id="root"]/div[2]/div[3]/div/div/div[2]/div[2]/div/div[1]/button'
 
         # etc
         self.context = {}
