@@ -368,7 +368,7 @@ class BankAccountTests(unittest.TestCase):
                     break
 
             auto_debt_status_text = driver.find_element(By.XPATH, self.auto_debt_chart_xpath).text
-            print(auto_debt_status_text)
+
             assert auto_debt_status_text == 'Tidak Aktif'
             logger.success("Deactivation Auto Debt Bank Account Test Case has been Tested")
 
