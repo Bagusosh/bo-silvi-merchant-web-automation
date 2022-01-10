@@ -111,8 +111,6 @@ class BankAccountTests(unittest.TestCase):
                 logger.error("Check Bank Account Test Case Resulted Error")
                 return
 
-            time.sleep(5)
-
             assert modal_exist is True
             logger.success("Adding Bank Account Test Case has been Tested")
 
@@ -338,6 +336,9 @@ class BankAccountTests(unittest.TestCase):
                     status_auto_debt.find_element(By.TAG_NAME, 'input').click()
                     break
 
+            auto_debt_status_text = driver.find_element(By.XPATH, self.auto_debt_chart_xpath).text
+
+            assert auto_debt_status_text == 'Aktif'
             logger.success("Activation Auto Debt Bank Account Test Case has been Tested")
 
     def test_deactivating_auto_debt(self):
@@ -366,7 +367,20 @@ class BankAccountTests(unittest.TestCase):
                     status_auto_debt.find_element(By.TAG_NAME, 'input').click()
                     break
 
+            auto_debt_status_text = driver.find_element(By.XPATH, self.auto_debt_chart_xpath).text
+            print(auto_debt_status_text)
+            assert auto_debt_status_text == 'Tidak Aktif'
             logger.success("Deactivation Auto Debt Bank Account Test Case has been Tested")
+
+    @classmethod
+    def as_suite(cls, test_suite: unittest.TestSuite) -> unittest.TestSuite:
+        test_suite.addTest(cls('test_remove_bank_account'))
+        test_suite.addTest(cls('test_adding_bank_account'))
+        test_suite.addTest(cls('test_change_bank_account'))
+        test_suite.addTest(cls('test_cancelling_change_bank_account'))
+        test_suite.addTest(cls('test_deactivating_auto_debt'))
+        test_suite.addTest(cls('test_activating_auto_debt'))
+        return test_suite
 
     def tearDown(self) -> None:
         pass
