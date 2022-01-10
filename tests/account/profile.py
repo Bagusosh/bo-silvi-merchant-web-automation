@@ -48,6 +48,8 @@ class AccountSettingProfileTests(unittest.TestCase):
         self.button_set_time_xpath = '//*[@id="root"]/div[2]/div[3]/div/div[2]/div[2]/div[2]/div[3]/div[2]/div[2]/div/div[3]/div[1]/span'
         self.button_save_operational_hour_xpath = '//*[@id="root"]/div[2]/div[3]/div/div[2]/div[2]/div[2]/div[3]/div[2]/div[1]/button[2]'
         self.time_row_xpath = '/html/body/div[3]/div[3]/div/div[1]/div/div[2]/div/div/span'
+        self.open_twenty_hour_xpath = '//*[@id="root"]/div[2]/div[3]/div/div[2]/div[2]/div[2]/div[3]/div[2]/div[2]/div/div[1]'
+        self.closed_xpath = '//*[@id="root"]/div[2]/div[3]/div/div[2]/div[2]/div[2]/div[3]/div[2]/div[2]/div/div[2]'
 
         # etc
         self.context = {}
@@ -198,8 +200,10 @@ class AccountSettingProfileTests(unittest.TestCase):
                 _ = WebDriverWait(driver, 10).until(
                     EC.presence_of_element_located((By.XPATH, self.modal_operational_xpath))
                 )
+                modal_exist = True
             except TimeoutException:
                 logger.error("Set Operational Hour Test Case Resulted Error")
+                modal_exist = False
                 return
 
             try:
@@ -216,6 +220,10 @@ class AccountSettingProfileTests(unittest.TestCase):
             except TimeoutException:
                 logger.error("Set Operational Hour Test Case Resulted Error")
 
+            toggle_status = driver.find_element(By.XPATH, self.open_twenty_hour_xpath).get_attribute('data-active')
+
+            assert modal_exist is True
+            assert toggle_status == 'true'
             logger.success("Set Open 24 hour Operational Hour Test Case has been Tested")
 
     def test_set_closed_operational_hour(self):
@@ -242,8 +250,10 @@ class AccountSettingProfileTests(unittest.TestCase):
                 _ = WebDriverWait(driver, 10).until(
                     EC.presence_of_element_located((By.XPATH, self.table_operational_hours_xpath))
                 )
+                modal_exist = True
             except TimeoutException:
                 logger.error("Set Operational Hour Test Case Resulted Error")
+                modal_exist = False
                 return
 
             table_row_elements = driver.find_elements(By.XPATH, self.table_row_xpath)
@@ -274,6 +284,10 @@ class AccountSettingProfileTests(unittest.TestCase):
             except TimeoutException:
                 logger.error("Set Operational Hour Test Case Resulted Error")
 
+            toggle_status = driver.find_element(By.XPATH, self.closed_xpath).get_attribute('data-active')
+
+            assert modal_exist is True
+            assert toggle_status == 'true'
             logger.success("Set Closed Operational Hour Test Case has been Tested")
 
     def test_set_time_operational_hour(self):
@@ -340,6 +354,15 @@ class AccountSettingProfileTests(unittest.TestCase):
                 logger.error("Set Operational Hour Test Case Resulted Error")
 
             logger.success("Set Operational Hour Test Case has been Tested")
+
+    @classmethod
+    def as_suite(cls, test_suite: unittest.TestSuite) -> unittest.TestSuite:
+        test_suite.addTest(cls('test_change_profile_cover'))
+        test_suite.addTest(cls('test_change_business_information'))
+        test_suite.addTest(cls('test_set_twenty_four_operational_hour'))
+        test_suite.addTest(cls('test_set_closed_operational_hour'))
+        test_suite.addTest(cls('test_set_time_operational_hour'))
+        return test_suite
 
     def tearDown(self) -> None:
         pass
