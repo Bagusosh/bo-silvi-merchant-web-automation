@@ -33,9 +33,10 @@ class CustomerDataReportTests(unittest.TestCase):
 
         # Xpath
         self.list_customer_page_xpath = '//*[@id="root"]/div[2]/div[2]/div[8]/div[1]/div[2]'
-        self.search_button_xpath = '/html/body/div[1]/div[2]/div[3]/div/div[2]/div/input'
         self.report_list_customer_chart_xpath = '/html/body/div[1]/div[2]/div[3]/div/div[5]/div[2]'
         self.report_list_customer_filter_chart_xpath = '/html/body/div[1]/div[2]/div[3]/div/div[6]/div[2]'
+
+        self.search_button_xpath = '/html/body/div[1]/div[2]/div[3]/div/div[2]/div/input'
         self.calendar_button_xpath = '/html/body/div[1]/div[2]/div[3]/div/div[3]/div/button[2]'
         self.today_button_xpath = '/html/body/div[3]/div[3]/ul/div/div[2]/button[1]'
         self.yesterday_button_xpath = '/html/body/div[3]/div[3]/ul/div/div[2]/button[2]'
@@ -363,6 +364,17 @@ class CustomerDataReportTests(unittest.TestCase):
             time.sleep(5)
             assert page_exist is True
             logger.success("Check List Customer Data by Search Name After Using Filters Test Case has been Tested")
+
+    @classmethod
+    def as_suite(cls, test_suite: unittest.TestSuite) -> unittest.TestSuite:
+        test_suite.addTest(cls('test_customer_data_without_any_filters'))
+        test_suite.addTest(cls('test_customer_data_by_search_name'))
+        test_suite.addTest(cls('test_customer_data_with_date_filter'))
+        test_suite.addTest(cls('test_customer_data_with_high_spender_filter'))
+        test_suite.addTest(cls('test_customer_data_with_loyal_customer_filter'))
+        test_suite.addTest(cls('test_customer_data_with_high_spender_and_royal_customer_filter'))
+        test_suite.addTest(cls('test_customer_data_by_search_name_after_using_filters'))
+        return test_suite
 
     def tearDown(self) -> None:
         pass
