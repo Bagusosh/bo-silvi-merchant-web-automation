@@ -45,11 +45,12 @@ class EmployeeSettingTests(unittest.TestCase):
         self.table_row_xpath = '//*[@id="root"]/div[2]/div[3]/div/div[2]/div[3]/div/div[2]/div'
         self.position_row_xpath = '/html/body/div[3]/div[3]/ul'
         self.modal_confirmation_xpath = '/html/body/div[4]/div[3]/div'
+        self.field_recruit_employee_xpath = '//*[@id="recruitmentForm"]/div[3]/div/div/div'
+        self.recruit_position_employee = '/html/body/div[4]/div[3]/ul'
+
         self.button_accept_xpath = '/html/body/div[4]/div[3]/div/div[3]/button[2]'
         self.button_decline_xpath = '/html/body/div[4]/div[3]/div/div[3]/button[1]'
         self.button_recruit_employee_xpath = '//*[@id="root"]/div[2]/div[3]/div/div[2]/div[2]/button'
-        self.field_recruit_employee_xpath = '//*[@id="recruitmentForm"]/div[3]/div/div/div'
-        self.recruit_position_employee = '/html/body/div[4]/div[3]/ul'
         self.button_save_recruit_xpath = '//*[@id="root"]/div[2]/div[3]/div/div[1]/div[2]/div[1]/button[2]'
 
         # etc
@@ -75,8 +76,10 @@ class EmployeeSettingTests(unittest.TestCase):
                 _ = WebDriverWait(driver, 10).until(
                     EC.presence_of_element_located((By.XPATH, self.employee_chart_xpath))
                 )
+                chart_exist = True
             except TimeoutException:
                 logger.error("Set Employee Position Test Case Resulted Error")
+                chart_exist = False
                 return
 
             table_row_elements = driver.find_elements(By.XPATH, self.table_row_xpath)
@@ -105,6 +108,7 @@ class EmployeeSettingTests(unittest.TestCase):
                 logger.error("Set Employee Position Test Case Resulted Error")
                 return
 
+            assert chart_exist is True
             logger.success("Set Employee Position Test Case has been Tested")
 
     def test_canceling_set_position_to_employee(self):
@@ -127,8 +131,10 @@ class EmployeeSettingTests(unittest.TestCase):
                 _ = WebDriverWait(driver, 10).until(
                     EC.presence_of_element_located((By.XPATH, self.employee_chart_xpath))
                 )
+                chart_exist = True
             except TimeoutException:
                 logger.error("Set Employee Position Test Case Resulted Error")
+                chart_exist = False
                 return
 
             table_row_elements = driver.find_elements(By.XPATH, self.table_row_xpath)
@@ -157,6 +163,7 @@ class EmployeeSettingTests(unittest.TestCase):
                 logger.error("Set Employee Position Test Case Resulted Error")
                 return
 
+            assert chart_exist is True
             logger.success("Canceling Set Employee Position Test Case has been Tested")
 
     def test_recruit_employee_with_all_valid_data(self):
@@ -177,8 +184,10 @@ class EmployeeSettingTests(unittest.TestCase):
                 _ = WebDriverWait(driver, 10).until(
                     EC.presence_of_element_located((By.XPATH, self.employee_chart_xpath))
                 )
+                chart_exist = True
             except TimeoutException:
                 logger.error("Recruit Employee Position Test Case Resulted Error")
+                chart_exist = False
                 return
 
             try:
@@ -214,6 +223,7 @@ class EmployeeSettingTests(unittest.TestCase):
                 logger.error("Recruit Employee Position Test Case Resulted Error")
                 return
 
+            assert chart_exist is True
             logger.success("Recruit Employee Position with All Valid Data Test Case has been Tested")
 
     def test_recruit_employee_with_empty_data(self):
@@ -234,8 +244,10 @@ class EmployeeSettingTests(unittest.TestCase):
                 _ = WebDriverWait(driver, 10).until(
                     EC.presence_of_element_located((By.XPATH, self.employee_chart_xpath))
                 )
+                chart_exist = True
             except TimeoutException:
                 logger.error("Recruit Employee Position Test Case Resulted Error")
+                chart_exist = False
                 return
 
             try:
@@ -254,6 +266,7 @@ class EmployeeSettingTests(unittest.TestCase):
                 logger.error("Recruit Employee Position Test Case Resulted Error")
                 return
 
+            assert chart_exist is True
             logger.success("Recruit Employee Position with Empty Data Test Case has been Tested")
 
     def test_recruit_employee_with_invalid_format_phone_number(self):
@@ -274,8 +287,10 @@ class EmployeeSettingTests(unittest.TestCase):
                 _ = WebDriverWait(driver, 10).until(
                     EC.presence_of_element_located((By.XPATH, self.employee_chart_xpath))
                 )
+                chart_exist = True
             except TimeoutException:
                 logger.error("Recruit Employee Position Test Case Resulted Error")
+                chart_exist = False
                 return
 
             try:
@@ -311,6 +326,7 @@ class EmployeeSettingTests(unittest.TestCase):
                 logger.error("Recruit Employee Position Test Case Resulted Error")
                 return
 
+            assert chart_exist is True
             logger.success("Recruit Set Employee Position with Invalid Format Phone Number Test Case has been Tested")
 
     def test_recruit_employee_when_position_is_empty(self):
@@ -331,8 +347,10 @@ class EmployeeSettingTests(unittest.TestCase):
                 _ = WebDriverWait(driver, 10).until(
                     EC.presence_of_element_located((By.XPATH, self.employee_chart_xpath))
                 )
+                chart_exist = True
             except TimeoutException:
                 logger.error("Recruit Employee Position Test Case Resulted Error")
+                chart_exist = False
                 return
 
             try:
@@ -355,6 +373,7 @@ class EmployeeSettingTests(unittest.TestCase):
                 logger.error("Recruit Employee Position Test Case Resulted Error")
                 return
 
+            assert chart_exist is True
             logger.success("Recruit Set Employee Position when Position is Empty Test Case has been Tested")
 
     def test_recruit_employee_with_invalid_format_email(self):
@@ -375,8 +394,10 @@ class EmployeeSettingTests(unittest.TestCase):
                 _ = WebDriverWait(driver, 10).until(
                     EC.presence_of_element_located((By.XPATH, self.employee_chart_xpath))
                 )
+                chart_exist = True
             except TimeoutException:
                 logger.error("Recruit Employee Position Test Case Resulted Error")
+                chart_exist = False
                 return
 
             try:
@@ -412,7 +433,19 @@ class EmployeeSettingTests(unittest.TestCase):
                 logger.error("Recruit Employee Position Test Case Resulted Error")
                 return
 
+            assert chart_exist is True
             logger.success("Recruit Set Employee Position with Invalid Format Email Test Case has been Tested")
+
+    @classmethod
+    def as_suite(cls, test_suite: unittest.TestSuite) -> unittest.TestSuite:
+        test_suite.addTest(cls('test_recruit_employee_with_all_valid_data'))
+        test_suite.addTest(cls('test_recruit_employee_when_position_is_empty'))
+        test_suite.addTest(cls('test_set_position_to_employee'))
+        test_suite.addTest(cls('test_canceling_set_position_to_employee'))
+        test_suite.addTest(cls('test_recruit_employee_with_empty_data'))
+        test_suite.addTest(cls('test_recruit_employee_with_invalid_format_phone_number'))
+        test_suite.addTest(cls('test_recruit_employee_with_invalid_format_email'))
+        return test_suite
 
     def tearDown(self) -> None:
         pass
