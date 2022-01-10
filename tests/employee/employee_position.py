@@ -562,5 +562,13 @@ class EmployeeJobPositionTests(unittest.TestCase):
             assert table_row_exist is True
             logger.success("Edit Enable Access Back Office Test Case Test Case has been Tested")
 
+    @classmethod
+    def as_suite(cls, test_suite: unittest.TestSuite) -> unittest.TestSuite:
+        test_suite.addTest(cls('test_create_job_position'))
+        test_suite.addTest(cls('test_edit_job_position'))
+        test_suite.addTest(cls('test_edit_job_position_enable_access_back_office'))
+        test_suite.addTest(cls('test_delete_job_position'))
+        return test_suite
+
     def tearDown(self) -> None:
         pass
