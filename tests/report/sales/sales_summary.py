@@ -33,6 +33,8 @@ class SalesSummaryTests(unittest.TestCase):
         # xPaths
         self.sales_page = '//*[@id="root"]/div[2]/div[2]/div[4]/div[1]/div[2]/a'
         self.summary_page = '//*[@id="root"]/div[2]/div[3]/div/div/div[2]/div[1]/div[3]/div/button[1]'
+        self.summary_chart_xpath = '/html/body/div[1]/div[2]/div[3]/div/div/div[2]/div[2]/div/div[2]/div[1]'
+
         self.login_button_xpath = '//*[@id="root"]/div[2]/div/div[2]/form/button'
         self.calendar_button_xpath = '/html/body/div[1]/div[2]/div[3]/div/div/div[2]/div[2]/div/div[1]/div/button[2]'
         self.today_button_xpath = '/html/body/div[3]/div[3]/ul/div/div[2]/button[1]'
@@ -43,7 +45,6 @@ class SalesSummaryTests(unittest.TestCase):
         self.last_month_button_xpath = '/html/body/div[3]/div[3]/ul/div/div[2]/button[6]'
         self.this_year_button_xpath = '/html/body/div[3]/div[3]/ul/div/div[2]/button[7]'
         self.last_year_button_xpath = '/html/body/div[3]/div[3]/ul/div/div[2]/button[8]'
-        self.summary_chart_xpath = '/html/body/div[1]/div[2]/div[3]/div/div/div[2]/div[2]/div/div[2]/div[1]'
 
         # Etc.
         self.context = {}
@@ -462,6 +463,18 @@ class SalesSummaryTests(unittest.TestCase):
 
             assert page_exist is True
             logger.success("Check Summary with Specific Date Test Case has been Tested")
+
+    @classmethod
+    def as_suite(cls, test_suite: unittest.TestSuite) -> unittest.TestSuite:
+        test_suite.addTest(cls('test_check_summary_today'))
+        test_suite.addTest(cls('test_check_summary_yesterday'))
+        test_suite.addTest(cls('test_check_summary_this_week'))
+        test_suite.addTest(cls('test_check_summary_last_week'))
+        test_suite.addTest(cls('test_check_summary_this_month'))
+        test_suite.addTest(cls('test_check_summary_last_month'))
+        test_suite.addTest(cls('test_check_summary_this_year'))
+        test_suite.addTest(cls('test_check_summary_last_year'))
+        return test_suite
 
     def tearDown(self) -> None:
         pass
