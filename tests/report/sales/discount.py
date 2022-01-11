@@ -32,8 +32,9 @@ class SalesPerDiscountTests(unittest.TestCase):
 
         # Xpath
         self.sales_page_xpath = '//*[@id="root"]/div[2]/div[2]/div[4]/div[1]/div[2]/a'
-        self.calendar_button_xpath = '/html/body/div[1]/div[2]/div[3]/div/div/div[2]/div[6]/div/div[1]/div/button[2]'
-        self.today_button_xpath = '/html/body/div[3]/div[3]/ul/div/div[2]/button[1]'
+        self.sales_per_discount_page_xpath = '//div[@id="root"]/div[2]/div[3]/div/div/div[2]/div/div[2]/div/button[5]'
+        self.report_discount_chart_xpath = '/html/body/div[1]/div[2]/div[3]/div/div/div[2]/div[6]/div/div[2]/div[2]'
+
         self.yesterday_button_xpath = '/html/body/div[3]/div[3]/ul/div/div[2]/button[2]'
         self.this_week_button_xpath = '/html/body/div[3]/div[3]/ul/div/div[2]/button[3]'
         self.last_week_button_xpath = '/html/body/div[3]/div[3]/ul/div/div[2]/button[4]'
@@ -41,8 +42,8 @@ class SalesPerDiscountTests(unittest.TestCase):
         self.last_month_button_xpath = '/html/body/div[3]/div[3]/ul/div/div[2]/button[6]'
         self.this_year_button_xpath = '/html/body/div[3]/div[3]/ul/div/div[2]/button[7]'
         self.last_year_button_xpath = '/html/body/div[3]/div[3]/ul/div/div[2]/button[8]'
-        self.sales_per_discount_page_xpath = '//div[@id="root"]/div[2]/div[3]/div/div/div[2]/div/div[2]/div/button[5]'
-        self.report_discount_chart_xpath = '/html/body/div[1]/div[2]/div[3]/div/div/div[2]/div[6]/div/div[2]/div[2]'
+        self.calendar_button_xpath = '/html/body/div[1]/div[2]/div[3]/div/div/div[2]/div[6]/div/div[1]/div/button[2]'
+        self.today_button_xpath = '/html/body/div[3]/div[3]/ul/div/div[2]/button[1]'
 
         # etc
         self.context = {}
@@ -454,6 +455,18 @@ class SalesPerDiscountTests(unittest.TestCase):
 
             assert page_exist is True
             logger.success("Check Report Discount Last Year Test Case has been Tested")
+
+    @classmethod
+    def as_suite(cls, test_suite: unittest.TestSuite) -> unittest.TestSuite:
+        test_suite.addTest(cls('test_check_report_discount_today'))
+        test_suite.addTest(cls('test_check_report_discount_yesterday'))
+        test_suite.addTest(cls('test_check_report_discount_this_week'))
+        test_suite.addTest(cls('test_check_report_discount_last_week'))
+        test_suite.addTest(cls('test_check_report_discount_this_month'))
+        test_suite.addTest(cls('test_check_report_discount_last_month'))
+        test_suite.addTest(cls('test_check_report_discount_this_year'))
+        test_suite.addTest(cls('test_check_report_discount_last_year'))
+        return test_suite
 
     def tearDown(self) -> None:
         pass
