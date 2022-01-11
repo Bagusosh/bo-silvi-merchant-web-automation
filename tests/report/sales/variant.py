@@ -32,6 +32,8 @@ class SalesReportVariantTests(unittest.TestCase):
         # Xpath
         self.sales_per_variant_chart_xpath = '/html/body/div[1]/div[2]/div[3]/div/div/div[2]/div[8]/div/div[2]'
         self.sales_page_xpath = '//*[@id="root"]/div[2]/div[2]/div[4]/div[1]/div[2]/a'
+        self.sales_per_variant_page_xpath = '//div[@id="root"]/div[2]/div[3]/div/div/div[2]/div/div[2]/div/button[7]'
+
         self.calendar_button_xpath = '/html/body/div[1]/div[2]/div[3]/div/div/div[2]/div[8]/div/div[1]/div/button[2]'
         self.today_button_xpath = '/html/body/div[3]/div[3]/ul/div/div[2]/button[1]'
         self.yesterday_button_xpath = '/html/body/div[3]/div[3]/ul/div/div[2]/button[2]'
@@ -41,7 +43,6 @@ class SalesReportVariantTests(unittest.TestCase):
         self.last_month_button_xpath = '/html/body/div[3]/div[3]/ul/div/div[2]/button[6]'
         self.this_year_button_xpath = '/html/body/div[3]/div[3]/ul/div/div[2]/button[7]'
         self.last_year_button_xpath = '/html/body/div[3]/div[3]/ul/div/div[2]/button[8]'
-        self.sales_per_variant_page_xpath = '//div[@id="root"]/div[2]/div[3]/div/div/div[2]/div/div[2]/div/button[7]'
 
         # etc
         self.context = {}
@@ -535,6 +536,18 @@ class SalesReportVariantTests(unittest.TestCase):
 
             assert page_exist is True
             logger.success("Check Sales per Variant Last Year Test Case has been Tested")
+
+    @classmethod
+    def as_suite(cls, test_suite: unittest.TestSuite) -> unittest.TestSuite:
+        test_suite.addTest(cls('test_check_report_variant_today'))
+        test_suite.addTest(cls('test_check_report_variant_yesterday'))
+        test_suite.addTest(cls('test_check_report_variant_this_week'))
+        test_suite.addTest(cls('test_check_report_variant_last_week'))
+        test_suite.addTest(cls('test_check_report_variant_this_month'))
+        test_suite.addTest(cls('test_check_report_variant_last_month'))
+        test_suite.addTest(cls('test_check_report_variant_this_year'))
+        test_suite.addTest(cls('test_check_report_variant_last_year'))
+        return test_suite
 
     def tearDown(self) -> None:
         pass
