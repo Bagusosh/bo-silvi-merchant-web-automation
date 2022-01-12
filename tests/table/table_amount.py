@@ -33,16 +33,17 @@ class TableAmountSetupTests(unittest.TestCase):
         # Xpath
         self.table_amount_page_xpath = '//*[@id="root"]/div[2]/div[2]/div[12]/div[1]/div[2]'
         self.status_request_chart_xpath = '/html/body/div[1]/div[2]/div[3]/div/div/div[2]/div[2]'
-        self.request_table_button_xpath = '//*[@id="root"]/div[2]/div[3]/div/div/div[2]/div[1]/div[2]/button'
         self.request_table_modal_xpath = '/html/body/div[3]/div[3]/div'
+
         self.accepting_verification_button_xpath = '/html/body/div[3]/div[3]/div/div[3]/button[2]'
+        self.request_table_button_xpath = '//*[@id="root"]/div[2]/div[3]/div/div/div[2]/div[1]/div[2]/button'
         self.continue_button_xpath = '/html/body/div[3]/div[3]/div/div[3]/button[2]'
         self.cancel_button_xpath = '/html/body/div[3]/div[3]/div/div[3]/button[1]'
 
         # etc
         self.context = {}
 
-    def test_request_table_Amount(self):
+    def test_request_table_amount(self):
         with self.driver as driver:
 
             driver.execute_script("window.scrollTo(0,document.body.scrollHeight)")
@@ -106,7 +107,7 @@ class TableAmountSetupTests(unittest.TestCase):
             assert page_exist is True
             logger.success("Check Request Table Amount Test Case has been Tested")
 
-    def test_canceling_request_table_Amount(self):
+    def test_canceling_request_table_amount(self):
         with self.driver as driver:
 
             driver.execute_script("window.scrollTo(0,document.body.scrollHeight)")
@@ -190,6 +191,13 @@ class TableAmountSetupTests(unittest.TestCase):
 
             assert modal_exist is False
             logger.error("Disable Button Activated")
+
+    @classmethod
+    def as_suite(cls, test_suite: unittest.TestSuite) -> unittest.TestSuite:
+        test_suite.addTest(cls('test_request_table_amount'))
+        test_suite.addTest(cls('test_canceling_request_table_amount'))
+        test_suite.addTest(cls('test_click_button_disable'))
+        return test_suite
 
     def tearDown(self) -> None:
         pass
