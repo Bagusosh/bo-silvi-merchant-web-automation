@@ -31,6 +31,7 @@ class BankAccountTests(unittest.TestCase):
         self.valid_account_holder_name = 'Rangga Luthanza'
         self.valid_pin = 123456
         self.valid_account_bank_number = '0774689929'
+        self.bank_account_empty_text = '+ Tambah Rekening Bank'
 
         # Xpath
         self.bank_account_page_xpath = '//*[@id="root"]/div[2]/div[2]/div[14]/div[3]/div[2]'
@@ -39,6 +40,9 @@ class BankAccountTests(unittest.TestCase):
         self.list_of_bank_name_xpath = '//*[@id="menu-"]/div[3]/ul'
         self.modal_adding_bank_account_xpath = '//*[@id="root"]/div[2]/div[3]/div/div/div[2]/div[1]/div[2]'
         self.auto_debt_chart_xpath = '//*[@id="root"]/div[2]/div[3]/div/div/div[2]/div[3]/div/div[1]'
+        self.data_bank_account_card_xpath = '//*[@id="root"]/div[2]/div[3]/div/div/div[2]/div[2]/div'
+        self.bank_name_xpath = '//*[@id="root"]/div[2]/div[3]/div/div/div[2]/div[2]/div/div[2]/h4'
+        self.account_bank_number_xpath = '//*[@id="root"]/div[2]/div[3]/div/div/div[2]/div[2]/div/div[2]/p'
 
         self.button_delete_account_confirmation_xpath = '/html/body/div[3]/div[3]/div/div[3]/button[2]'
         self.button_cancel_account_confirmation_xpath = '/html/body/div[3]/div[3]/div/div[3]/button[1]'
@@ -89,7 +93,7 @@ class BankAccountTests(unittest.TestCase):
 
             try:
                 _ = WebDriverWait(driver, 10).until(
-                    EC.element_to_be_clickable((By.XPATH, self.field_bank_name_xpath))
+                    EC.visibility_of_element_located((By.XPATH, self.field_bank_name_xpath))
                 ).click()
             except TimeoutException:
                 logger.error("Check Bank Account Test Case Resulted Error")
@@ -101,8 +105,21 @@ class BankAccountTests(unittest.TestCase):
                     row_element.click()
                     break
 
-            driver.find_element(By.ID, 'accountNumber').send_keys(self.valid_account_bank_number)
-            driver.find_element(By.ID, 'accountHolderName').send_keys(self.valid_account_holder_name)
+            try:
+                _ = WebDriverWait(driver, 10).until(
+                    EC.visibility_of_element_located((By.ID, 'accountNumber'))
+                ).send_keys(self.valid_account_bank_number)
+            except TimeoutException:
+                logger.error("Check Bank Account Test Case Resulted Error")
+                return
+
+            try:
+                _ = WebDriverWait(driver, 10).until(
+                    EC.visibility_of_element_located((By.ID, 'accountHolderName'))
+                ).send_keys(self.valid_account_holder_name)
+            except TimeoutException:
+                logger.error("Check Bank Account Test Case Resulted Error")
+                return
 
             try:
                 _ = WebDriverWait(driver, 10).until(
@@ -112,7 +129,20 @@ class BankAccountTests(unittest.TestCase):
                 logger.error("Check Bank Account Test Case Resulted Error")
                 return
 
+            try:
+                _ = WebDriverWait(driver, 10).until(
+                    EC.presence_of_element_located((By.XPATH, self.data_bank_account_card_xpath))
+                )
+            except TimeoutException:
+                logger.error("Check Bank Account Test Case Resulted Error")
+                return
+
+            account_bank_name = driver.find_element(By.XPATH, self.bank_name_xpath).text
+            account_bank_number = driver.find_element(By.XPATH, self.account_bank_number_xpath).text
+
             assert modal_exist is True
+            assert account_bank_name == self.valid_bank_name
+            assert account_bank_number == str(self.valid_account_bank_number)
             logger.success("Adding Bank Account Test Case has been Tested")
 
     def test_change_bank_account(self):
@@ -125,7 +155,7 @@ class BankAccountTests(unittest.TestCase):
                     EC.element_to_be_clickable((By.XPATH, self.bank_account_page_xpath))
                 ).click()
             except TimeoutException:
-                logger.error("Check Bank Account Test Case Resulted Error")
+                logger.error("Change Bank Account Test Case Resulted Error")
 
             try:
                 _ = WebDriverWait(driver, 10).until(
@@ -140,7 +170,7 @@ class BankAccountTests(unittest.TestCase):
                     EC.element_to_be_clickable((By.XPATH, self.button_delete_bank_account_xpath))
                 ).click()
             except TimeoutException:
-                logger.error("Check Bank Account Test Case Resulted Error")
+                logger.error("Change Bank Account Test Case Resulted Error")
                 return
 
             try:
@@ -149,7 +179,7 @@ class BankAccountTests(unittest.TestCase):
                 )
                 modal_exist = True
             except TimeoutException:
-                logger.error("Check Bank Account Test Case Resulted Error")
+                logger.error("Change Bank Account Test Case Resulted Error")
                 modal_exist = False
                 return
 
@@ -160,7 +190,7 @@ class BankAccountTests(unittest.TestCase):
                     EC.element_to_be_clickable((By.XPATH, self.button_delete_account_confirmation_xpath))
                 ).click()
             except TimeoutException:
-                logger.error("Check Bank Account Test Case Resulted Error")
+                logger.error("Change Bank Account Test Case Resulted Error")
                 return
 
             try:
@@ -168,7 +198,7 @@ class BankAccountTests(unittest.TestCase):
                     EC.element_to_be_clickable((By.XPATH, self.button_adding_bank_account_xpath))
                 ).click()
             except TimeoutException:
-                logger.error("Check Bank Account Test Case Resulted Error")
+                logger.error("Change Bank Account Test Case Resulted Error")
                 return
 
             try:
@@ -177,16 +207,16 @@ class BankAccountTests(unittest.TestCase):
                 )
                 modal_exist = True
             except TimeoutException:
-                logger.error("Check Bank Account Test Case Resulted Error")
+                logger.error("Change Bank Account Test Case Resulted Error")
                 modal_exist = False
                 return
 
             try:
                 _ = WebDriverWait(driver, 10).until(
-                    EC.element_to_be_clickable((By.XPATH, self.field_bank_name_xpath))
+                    EC.visibility_of_element_located((By.XPATH, self.field_bank_name_xpath))
                 ).click()
             except TimeoutException:
-                logger.error("Check Bank Account Test Case Resulted Error")
+                logger.error("Change Bank Account Test Case Resulted Error")
                 return
 
             table_row_elements = driver.find_element(By.XPATH, self.list_of_bank_name_xpath)
@@ -195,18 +225,44 @@ class BankAccountTests(unittest.TestCase):
                     row_element.click()
                     break
 
-            driver.find_element(By.ID, 'accountNumber').send_keys(self.valid_account_bank_number)
-            driver.find_element(By.ID, 'accountHolderName').send_keys(self.valid_account_holder_name)
+            try:
+                _ = WebDriverWait(driver, 10).until(
+                    EC.visibility_of_element_located((By.ID, 'accountNumber'))
+                ).send_keys(self.valid_account_bank_number)
+            except TimeoutException:
+                logger.error("Change Bank Account Test Case Resulted Error")
+                return
+
+            try:
+                _ = WebDriverWait(driver, 10).until(
+                    EC.visibility_of_element_located((By.ID, 'accountHolderName'))
+                ).send_keys(self.valid_account_holder_name)
+            except TimeoutException:
+                logger.error("Change Bank Account Test Case Resulted Error")
+                return
 
             try:
                 _ = WebDriverWait(driver, 10).until(
                     EC.element_to_be_clickable((By.XPATH, self.button_save_adding_bank_account_xpath))
                 ).click()
             except TimeoutException:
-                logger.error("Check Bank Account Test Case Resulted Error")
+                logger.error("Change Bank Account Test Case Resulted Error")
                 return
 
+            try:
+                _ = WebDriverWait(driver, 10).until(
+                    EC.presence_of_element_located((By.XPATH, self.data_bank_account_card_xpath))
+                )
+            except TimeoutException:
+                logger.error("Change Bank Account Test Case Resulted Error")
+                return
+
+            account_bank_name = driver.find_element(By.XPATH, self.bank_name_xpath).text
+            account_bank_number = driver.find_element(By.XPATH, self.account_bank_number_xpath).text
+
             assert modal_exist is True
+            assert account_bank_name == self.valid_bank_name
+            assert account_bank_number == str(self.valid_account_bank_number)
             logger.success("Change Bank Account Test Case has been Tested")
 
     def test_canceling_change_bank_account(self):
@@ -219,14 +275,14 @@ class BankAccountTests(unittest.TestCase):
                     EC.element_to_be_clickable((By.XPATH, self.bank_account_page_xpath))
                 ).click()
             except TimeoutException:
-                logger.error("Check Bank Account Test Case Resulted Error")
+                logger.error("Cancelling Change Bank Account Test Case Resulted Error")
 
             try:
                 _ = WebDriverWait(driver, 10).until(
                     EC.text_to_be_present_in_element((By.TAG_NAME, "h3"), self.valid_page_name)
                 )
             except TimeoutException:
-                logger.error("Change Bank Account Test Case Resulted Error")
+                logger.error("Cancelling Change Bank Account Test Case Resulted Error")
                 return
 
             try:
@@ -234,7 +290,7 @@ class BankAccountTests(unittest.TestCase):
                     EC.element_to_be_clickable((By.XPATH, self.button_delete_bank_account_xpath))
                 ).click()
             except TimeoutException:
-                logger.error("Check Bank Account Test Case Resulted Error")
+                logger.error("Cancelling Change Bank Account Test Case Resulted Error")
                 return
 
             try:
@@ -243,21 +299,40 @@ class BankAccountTests(unittest.TestCase):
                 )
                 modal_exist = True
             except TimeoutException:
-                logger.error("Check Bank Account Test Case Resulted Error")
+                logger.error("Cancelling Change Bank Account Test Case Resulted Error")
                 modal_exist = False
                 return
 
-            driver.find_element(By.ID, 'pin').send_keys(self.valid_pin)
+            try:
+                _ = WebDriverWait(driver, 10).until(
+                    EC.visibility_of_element_located((By.ID, 'pin'))
+                ).send_keys(self.valid_pin)
+            except TimeoutException:
+                logger.error("Cancelling Change Bank Account Test Case Resulted Error")
+                return
 
             try:
                 _ = WebDriverWait(driver, 10).until(
                     EC.element_to_be_clickable((By.XPATH, self.button_cancel_account_confirmation_xpath))
                 ).click()
             except TimeoutException:
-                logger.error("Check Bank Account Test Case Resulted Error")
+                logger.error("Cancelling Change Bank Account Test Case Resulted Error")
                 return
 
+            try:
+                _ = WebDriverWait(driver, 10).until(
+                    EC.presence_of_element_located((By.XPATH, self.data_bank_account_card_xpath))
+                )
+            except TimeoutException:
+                logger.error("Cancelling Change Bank Account Test Case Resulted Error")
+                return
+
+            account_bank_name = driver.find_element(By.XPATH, self.bank_name_xpath).text
+            account_bank_number = driver.find_element(By.XPATH, self.account_bank_number_xpath).text
+
             assert modal_exist is True
+            assert account_bank_name == self.valid_bank_name
+            assert account_bank_number == str(self.valid_account_bank_number)
             logger.success("Canceling Change Bank Account Test Case has been Tested")
 
     def test_remove_bank_account(self):
@@ -270,14 +345,14 @@ class BankAccountTests(unittest.TestCase):
                     EC.element_to_be_clickable((By.XPATH, self.bank_account_page_xpath))
                 ).click()
             except TimeoutException:
-                logger.error("Check Bank Account Test Case Resulted Error")
+                logger.error("Remove Bank Account Test Case Resulted Error")
 
             try:
                 _ = WebDriverWait(driver, 10).until(
                     EC.text_to_be_present_in_element((By.TAG_NAME, "h3"), self.valid_page_name)
                 )
             except TimeoutException:
-                logger.error("Change Bank Account Test Case Resulted Error")
+                logger.error("Remove Bank Account Test Case Resulted Error")
                 return
 
             try:
@@ -285,7 +360,7 @@ class BankAccountTests(unittest.TestCase):
                     EC.element_to_be_clickable((By.XPATH, self.button_delete_bank_account_xpath))
                 ).click()
             except TimeoutException:
-                logger.error("Check Bank Account Test Case Resulted Error")
+                logger.error("Remove Bank Account Test Case Resulted Error")
                 return
 
             try:
@@ -294,21 +369,38 @@ class BankAccountTests(unittest.TestCase):
                 )
                 modal_exist = True
             except TimeoutException:
-                logger.error("Check Bank Account Test Case Resulted Error")
+                logger.error("Remove Bank Account Test Case Resulted Error")
                 modal_exist = False
                 return
 
-            driver.find_element(By.ID, 'pin').send_keys(self.valid_pin)
+            try:
+                _ = WebDriverWait(driver, 10).until(
+                    EC.visibility_of_element_located((By.ID, 'pin'))
+                ).send_keys(self.valid_pin)
+            except TimeoutException:
+                logger.error("Remove Bank Account Test Case Resulted Error")
+                return
 
             try:
                 _ = WebDriverWait(driver, 10).until(
                     EC.element_to_be_clickable((By.XPATH, self.button_delete_account_confirmation_xpath))
                 ).click()
             except TimeoutException:
-                logger.error("Check Bank Account Test Case Resulted Error")
+                logger.error("Remove Bank Account Test Case Resulted Error")
                 return
 
+            try:
+                _ = WebDriverWait(driver, 10).until(
+                    EC.visibility_of_element_located((By.XPATH, self.button_adding_bank_account_xpath))
+                )
+            except TimeoutException:
+                logger.error("Remove Bank Account Test Case Resulted Error")
+                return
+
+            account_bank_text = driver.find_element(By.XPATH, self.button_adding_bank_account_xpath).text
+
             assert modal_exist is True
+            assert account_bank_text == self.bank_account_empty_text
             logger.success("Remove Bank Account Test Case has been Tested")
 
     def test_activating_auto_debt(self):
@@ -321,14 +413,14 @@ class BankAccountTests(unittest.TestCase):
                     EC.element_to_be_clickable((By.XPATH, self.bank_account_page_xpath))
                 ).click()
             except TimeoutException:
-                logger.error("Check Bank Account Test Case Resulted Error")
+                logger.error("Activation Auto DebtBank Account Test Case Resulted Error")
 
             try:
                 _ = WebDriverWait(driver, 10).until(
                     EC.text_to_be_present_in_element((By.TAG_NAME, "h3"), self.valid_page_name)
                 )
             except TimeoutException:
-                logger.error("Change Bank Account Test Case Resulted Error")
+                logger.error("Activation Auto Debt Bank Account Test Case Resulted Error")
                 return
 
             auto_debt_chart = driver.find_elements(By.XPATH, self.auto_debt_chart_xpath)
@@ -352,14 +444,14 @@ class BankAccountTests(unittest.TestCase):
                     EC.element_to_be_clickable((By.XPATH, self.bank_account_page_xpath))
                 ).click()
             except TimeoutException:
-                logger.error("Check Bank Account Test Case Resulted Error")
+                logger.error("Deactivation Auto Debt Bank Account Test Case Resulted Error")
 
             try:
                 _ = WebDriverWait(driver, 10).until(
                     EC.text_to_be_present_in_element((By.TAG_NAME, "h3"), self.valid_page_name)
                 )
             except TimeoutException:
-                logger.error("Change Bank Account Test Case Resulted Error")
+                logger.error("Deactivation Auto Debt Bank Account Test Case Resulted Error")
                 return
 
             auto_debt_chart = driver.find_elements(By.XPATH, self.auto_debt_chart_xpath)
@@ -375,12 +467,12 @@ class BankAccountTests(unittest.TestCase):
 
     @classmethod
     def as_suite(cls, test_suite: unittest.TestSuite) -> unittest.TestSuite:
-        test_suite.addTest(cls('test_remove_bank_account'))
         test_suite.addTest(cls('test_adding_bank_account'))
         test_suite.addTest(cls('test_change_bank_account'))
         test_suite.addTest(cls('test_cancelling_change_bank_account'))
         test_suite.addTest(cls('test_deactivating_auto_debt'))
         test_suite.addTest(cls('test_activating_auto_debt'))
+        test_suite.addTest(cls('test_remove_bank_account'))
         return test_suite
 
     def tearDown(self) -> None:
