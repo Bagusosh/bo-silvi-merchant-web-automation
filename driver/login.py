@@ -21,8 +21,8 @@ class LoginDriver:
             self.driver = webdriver.Chrome(executable_path=os.environ.get("CHROME_DRIVER"))
 
         self.login_url = "https://silvi-merchant-develop.netlify.app/"
-        self.valid_email = 'samsantechrestoran@mailnesia.com'
-        self.valid_password = '123456'
+        self.valid_email = 'insert your email here'
+        self.valid_password = 'insert your password here'
         self.valid_merchant_name = 'Samsan Tech Restoran!!'
 
         # xPaths
